@@ -1,0 +1,36 @@
+{
+  "name": "tetris-project",
+  "version": "1.0.0",
+  "description": "Tetris",
+  "author": "",
+  "private": true,
+  "scripts": {
+    "dev": "node build/dev-server.js",
+    "start": "node build/dev-server.js",
+    "build": "node build/build.js",
+    "lint": "eslint --ext .js,.vue src"
+  },
+  "dependencies": {
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1",
+    "bootstrap": "^4.0.0-beta.2",
+    "bootstrap-vue": "latest",
+    "popper.js": "^1.12.9"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.18.0",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
