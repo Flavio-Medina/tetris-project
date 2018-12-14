@@ -3,7 +3,7 @@ Tetris - WT Project
 
 In cmd or terminal in the project path: npm run dev  
 Link: localhost:8080  
- 
+
 To replace music:  
 Music Path: ./src/assets/audio/music.mp3  
 Chrome doesn't allow autoplay without user interaction by default!
