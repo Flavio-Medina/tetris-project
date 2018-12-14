@@ -1,23 +1,7 @@
 <template>
   <div>
     <h1 class="text-center">Tetris</h1>
-    <div class="sounds">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <pre>Music:  </pre>
-            <label class="switch">
-            <input type="checkbox" v-on:click="bgmplay()" checked>
-            <span class="slider"></span>
-            </label>
-        </div>
-        <br>
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">    
-            <pre>SFX:    </pre>
-            <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider"></span>
-            </label>
-        </div>
-    </div>
+    <sounds></sounds>
     <div class="container">
         <div class="col align-self-center btn btn-primary">
             <p class="btnFont">Start Game</p>
@@ -32,25 +16,11 @@
 
 <script>
 import instructions from './instructions'
-const bgmFile = require('../assets/audio/music.mp3')
-const bgm = new Audio(bgmFile)
-let bgmb = false
-bgm.autoplay = true // Chrome doesn't allow autoplay by default!
-bgm.loop = true
+import sounds from './sounds'
 export default {
   components: {
-    instructions
-  },
-  methods: {
-    bgmplay: function () {
-      if (bgmb === true) {
-        bgm.play()
-        bgmb = false
-      } else {
-        bgm.pause()
-        bgmb = true
-      }
-    }
+    instructions,
+    sounds
   }
 }
 </script>
@@ -61,12 +31,6 @@ h1.text-center {
     margin-bottom: 10vh;
 }
 
-.sounds {
-    position: fixed;
-    top: 2vh;
-    left: 10px;
-}
-
 .btnFont {
     font-size: 10vh;
     line-height: 10vh;
@@ -74,57 +38,5 @@ h1.text-center {
 
 .btn-primary {
     margin-bottom: 10vh;
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    top: 2px;
-    width: 30px;
-    height: 17px;
-}
-  
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-  
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-  
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 13px;
-    width: 13px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-  
-input:checked + .slider {
-    background-color: #2196F3;
-}
-  
-input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-}
-  
-input:checked + .slider:before {
-    -webkit-transform: translateX(13px);
-    -ms-transform: translateX(13px);
-    transform: translateX(13px);
 }
 </style>
