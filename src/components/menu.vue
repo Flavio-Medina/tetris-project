@@ -25,20 +25,22 @@
         <div class="col align-self-center btn btn-primary">
             <p class="btnFont">Highscore</p>
         </div>
-        <div class="col align-self-center btn btn-primary">
-            <p class="btnFont">Instructions</p>
-        </div>
+        <instructions></instructions>
     </div>
   </div>
 </template>
 
 <script>
+import instructions from './instructions'
 const bgmFile = require('../assets/audio/music.mp3')
 const bgm = new Audio(bgmFile)
 let bgmb = false
 bgm.autoplay = true // Chrome doesn't allow autoplay by default!
 bgm.loop = true
 export default {
+  components: {
+    instructions
+  },
   methods: {
     bgmplay: function () {
       if (bgmb === true) {
