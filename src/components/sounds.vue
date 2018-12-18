@@ -1,9 +1,10 @@
 <template>
     <div class="sounds">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <audio src="./static/music.mp3" ref="music" type="audio/mpeg" autoplay loop></audio>
             <pre>Music:  </pre>
             <label class="switch">
-            <input type="checkbox" v-on:click="bgmplay()" checked>
+            <input type="checkbox" v-on:click="bgmOnOff()" checked>
             <span class="slider"></span>
             </label>
         </div>
@@ -19,20 +20,16 @@
 </template>
 
 <script>
-const bgmFile = require('../assets/audio/music.mp3')
-const bgm = new Audio(bgmFile)
-let bgmb = false
-bgm.autoplay = true // Chrome doesn't allow autoplay by default!
-bgm.loop = true
+let bgmb = true
 export default {
   name: 'sounds',
   methods: {
-    bgmplay: function () {
+    bgmOnOff: function () {
       if (bgmb === true) {
-        bgm.play()
+        this.$refs.music.pause()
         bgmb = false
       } else {
-        bgm.pause()
+        this.$refs.music.play()
         bgmb = true
       }
     }

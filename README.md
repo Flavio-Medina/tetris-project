@@ -2,12 +2,12 @@
 Tetris - WT Project
 
 In cmd or terminal in the project path: npm run dev  
-Link: localhost:8080  
+Link: localhost:8080 (should open automatically)  
 
 To replace music:  
-Music Path: ./src/assets/audio/music.mp3  
-Chrome doesn't allow autoplay without user interaction by default!
-Fix: chrome://flags/#autoplay-policy set to "No user gesture is required"
+Music Path: ./static/music.mp3  
+
+Use the static folder to simply add media files  
 
 Progress:
 StartMenu: Music
