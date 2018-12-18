@@ -6,9 +6,7 @@
         <div class="col align-self-center btn btn-primary">
             <p class="btnFont">Start Game</p>
         </div>
-        <div class="col align-self-center btn btn-primary">
-            <p class="btnFont">Highscore</p>
-        </div>
+        <highscore></highscore>
         <instructions></instructions>
     </div>
   </div>
@@ -16,16 +14,18 @@
 
 <script>
 import instructions from './instructions'
+import highscore from './highscore'
 import sounds from './sounds'
 export default {
   components: {
     instructions,
+    highscore,
     sounds
   }
 }
 </script>
 
-<style scoped>
+<style>
 h1.text-center {
     font-size: 10vmax;
     margin-bottom: 10vh;
@@ -38,5 +38,6 @@ h1.text-center {
 
 .btn-primary {
     margin-bottom: 10vh;
+    background-color: #007bff;
 }
 </style>
