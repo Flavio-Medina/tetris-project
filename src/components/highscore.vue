@@ -17,6 +17,7 @@ const items = [
   { '': 4, name: 'Fourth', score: 700 },
   { '': 5, name: 'Fifth', score: 600 }
 ]
+import modal from './modal'
 export default {
   name: 'highscore',
   data () {
@@ -24,13 +25,6 @@ export default {
       items: items
     }
   },
-  methods: {
-    showModal () {
-      this.$refs.myModalRef.show()
-    },
-    hideModal () {
-      this.$refs.myModalRef.hide()
-    }
-  }
+  mixins: [modal]
 }
 </script>
