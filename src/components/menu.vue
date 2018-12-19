@@ -28,9 +28,17 @@ export default {
 </script>
 
 <style>
+body {
+  background-image: url("/static/background.png");
+  background-repeat: no-repeat;
+  background-size: 100vmax 100vmax;
+  cursor: default;
+}
+
 h1.text-center {
     font-size: 10vmax;
     margin-bottom: 10vh;
+    color: hotpink;
 }
 
 a {
@@ -40,12 +48,43 @@ a {
 .btnFont {
     font-size: 10vh;
     line-height: 10vh;
-    color: white;
+    color: rgb(255, 192, 227);
 }
 
 .btn-primary {
-    margin-bottom: 10vh;
-    background-color: #007bff;
-    border: 0;
+    margin-bottom: 8vh;
+    background-color: hotpink;
+    border-color: rgb(255, 192, 227);
+}
+
+.btn-primary:hover {
+    background-color: rgb(255, 192, 227);
+    border-color: hotpink;
+}
+
+.btn-primary:hover .btnFont {
+    color: hotpink;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    background-color: rgb(255, 192, 227);
+    border-color: hotpink;
+}
+
+.modal {
+    background-color: rgba(255, 105, 180, 0.5);
+    color: hotpink;
+}
+
+.modal-header {
+    background-color: rgba(255, 105, 180, 0.4);
+}
+
+.modal-body {
+    background-color: rgba(255, 105, 180, 0.3);
+}
+
+.table {
+    background-color: rgba(255, 105, 180, 0.05);
 }
 </style>

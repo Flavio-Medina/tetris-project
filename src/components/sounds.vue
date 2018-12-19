@@ -38,6 +38,10 @@ export default {
 </script>
 
 <style scoped>
+pre {
+    color: hotpink;
+}
+
 .sounds {
     position: fixed;
     top: 9vh;
@@ -65,7 +69,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: rgb(255, 192, 227);
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -83,11 +87,11 @@ export default {
 }
   
 input:checked + .slider {
-    background-color: #2196F3;
+    background-color: hotpink;
 }
   
 input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px hotpink;
 }
   
 input:checked + .slider:before {
