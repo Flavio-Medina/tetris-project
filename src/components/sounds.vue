@@ -40,7 +40,7 @@ export default {
 <style scoped>
 .sounds {
     position: fixed;
-    top: 2vh;
+    top: 9vh;
     left: 10px;
 }
 
