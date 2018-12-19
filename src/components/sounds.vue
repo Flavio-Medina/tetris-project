@@ -85,7 +85,7 @@ pre {
     width: 13px;
     left: 2px;
     bottom: 2px;
-    background-color: white;
+    background-color: rgb(255, 214, 237);
     -webkit-transition: .4s;
     transition: .4s;
 }
