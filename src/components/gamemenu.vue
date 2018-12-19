@@ -2,7 +2,7 @@
   <div>
     <sounds></sounds>
     <b-navbar class="pink" type="dark" toggleable="md" sticky>
-      <h1>Tetris</h1>
+      <b-navbar-brand to="/"><h1>Tetris</h1></b-navbar-brand>
       <highscoregame></highscoregame>
       <instructionsgame></instructionsgame>
       <settingsgame></settingsgame>
@@ -12,6 +12,7 @@
 
 <script>
 import sounds from './sounds'
+import menu from './menu'
 import settingsgame from './settingsgame'
 import highscoregame from './highscoregame'
 import instructionsgame from './instructionsgame'
@@ -19,6 +20,7 @@ export default {
   name: 'gamemenu',
   components: {
     sounds,
+    menu,
     settingsgame,
     highscoregame,
     instructionsgame
