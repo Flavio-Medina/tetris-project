@@ -30,7 +30,7 @@ export default {
 
 <style>
 body {
-  background-image: url("/static/background.png");
+  background-image: url("/static/background.jpg");
   background-repeat: no-repeat;
   background-size: 100vmax 100vmax;
 }

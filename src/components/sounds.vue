@@ -40,12 +40,16 @@ export default {
 <style scoped>
 pre {
     color: hotpink;
+    margin: 2px;
 }
 
 .sounds {
     position: fixed;
     top: 9vh;
     left: 10px;
+    border-style: solid;
+    border-color: hotpink;
+    background-color: rgb(255, 205, 229);
 }
 
 .switch {
