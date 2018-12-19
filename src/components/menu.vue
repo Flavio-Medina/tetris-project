@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center">Tetris</h1>
+    <img src="/static/logo.png" alt="Tetris" id="mlogo">
     <sounds></sounds>
     <div class="container">
         <b-button class="col align-self-center btn btn-primary" to="gamemenu"> <!-- TODO: replace with settingsmodal -->
@@ -35,10 +35,14 @@ body {
   cursor: default;
 }
 
-h1.text-center {
-    font-size: 10vmax;
-    margin-bottom: 10vh;
-    color: hotpink;
+#mlogo {
+    max-width: 60vw;
+    max-height: 20vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2vh;
+    margin-bottom: 8vh;
 }
 
 a {

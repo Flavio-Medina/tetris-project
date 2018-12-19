@@ -2,7 +2,7 @@
   <div>
     <sounds></sounds>
     <b-navbar class="pink" type="dark" toggleable="md" sticky>
-      <b-navbar-brand to="/"><h1>Tetris</h1></b-navbar-brand>
+      <b-navbar-brand to="/"><img src="/static/logo.png" alt="Tetris" id="gmlogo"></b-navbar-brand>
       <highscoregame></highscoregame>
       <instructionsgame></instructionsgame>
       <settingsgame></settingsgame>
@@ -35,26 +35,20 @@ body {
   background-size: 100vmax 100vmax;
 }
 
-.pink {
-  background-color: hotpink;
+#gmlogo {
+    width: 128px;
 }
 
-h1 {
-  font-size: 4vh;
-  padding-right: 6vh;
-  color: rgb(255, 192, 227);
+.pink {
+  background-color: rgb(255, 105, 180);
 }
 
 .gm {
   cursor: pointer;
-  font-size: 3vh;
-  padding-right: 4vh;
+  font-size: 32px; 
+  margin-left: 4vmax;
   margin-bottom: 0;
   color: rgb(255, 192, 227);
-}
-
-.test {
-  font-size: 50vh;
 }
 </style>
 
