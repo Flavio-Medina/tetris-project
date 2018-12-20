@@ -6,6 +6,9 @@
       <highscoregame></highscoregame>
       <howtoplaygame></howtoplaygame>
       <settingsgame></settingsgame>
+      <b-navbar-nav class="ml-auto">
+        <signinupgame></signinupgame>
+      </b-navbar-nav>
     </b-navbar>
     <howtoplayshort></howtoplayshort>
   </div>
@@ -18,6 +21,7 @@ import settingsgame from './settingsgame'
 import highscoregame from './highscoregame'
 import howtoplaygame from './howtoplaygame'
 import howtoplayshort from './howtoplayshort'
+import signinupgame from './signinupgame'
 export default {
   name: 'gamemenu',
   components: {
@@ -26,7 +30,8 @@ export default {
     settingsgame,
     highscoregame,
     howtoplaygame,
-    howtoplayshort
+    howtoplayshort,
+    signinupgame
   }
 }
 </script>

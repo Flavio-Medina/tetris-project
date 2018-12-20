@@ -1,6 +1,7 @@
 <template>
   <div>
     <img src="/static/logo.png" alt="Tetris" id="mlogo">
+    <signinup></signinup>
     <sounds></sounds>
     <div class="container">
         <b-button class="col align-self-center btn btn-primary" to="gamemenu"> <!-- TODO: replace with settingsmodal -->
@@ -17,12 +18,14 @@ import howtoplay from './howtoplay'
 import highscore from './highscore'
 import sounds from './sounds'
 import gamemenu from './gamemenu'
+import signinup from './signinup'
 export default {
   components: {
     howtoplay,
     highscore,
     sounds,
-    gamemenu
+    gamemenu,
+    signinup
   }
 }
 </script>
