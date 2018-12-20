@@ -7,19 +7,19 @@
           <p class="btnFont">Start Game</p>
         </b-button>
         <highscore></highscore>
-        <instructions></instructions>
+        <howtoplay></howtoplay>
     </div>
   </div>
 </template>
 
 <script>
-import instructions from './instructions'
+import howtoplay from './howtoplay'
 import highscore from './highscore'
 import sounds from './sounds'
 import gamemenu from './gamemenu'
 export default {
   components: {
-    instructions,
+    howtoplay,
     highscore,
     sounds,
     gamemenu

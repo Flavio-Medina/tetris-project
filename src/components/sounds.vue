@@ -49,7 +49,7 @@ pre {
     left: 10px;
     border-style: solid;
     border-color: hotpink;
-    background-color: rgb(255, 205, 229);
+    background-color: rgb(255, 214, 237);
 }
 
 .switch {

@@ -2,7 +2,7 @@
   <div>
     <p @click="showModal" class="gm">High Score</p>
     <b-modal ref="myModalRef" size="lg" hide-footer title="High Score">
-      <b-table striped hover :items="items"></b-table>
+      <b-table :items="items"></b-table>
     </b-modal>
   </div>
 </template>

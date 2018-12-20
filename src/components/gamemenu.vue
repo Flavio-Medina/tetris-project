@@ -4,9 +4,10 @@
     <b-navbar class="pink" type="dark" toggleable="md" sticky>
       <b-navbar-brand to="/"><img src="/static/logo.png" alt="Tetris" id="gmlogo"></b-navbar-brand>
       <highscoregame></highscoregame>
-      <instructionsgame></instructionsgame>
+      <howtoplaygame></howtoplaygame>
       <settingsgame></settingsgame>
     </b-navbar>
+    <howtoplayshort></howtoplayshort>
   </div>
 </template>
 
@@ -15,7 +16,8 @@ import sounds from './sounds'
 import menu from './menu'
 import settingsgame from './settingsgame'
 import highscoregame from './highscoregame'
-import instructionsgame from './instructionsgame'
+import howtoplaygame from './howtoplaygame'
+import howtoplayshort from './howtoplayshort'
 export default {
   name: 'gamemenu',
   components: {
@@ -23,7 +25,8 @@ export default {
     menu,
     settingsgame,
     highscoregame,
-    instructionsgame
+    howtoplaygame,
+    howtoplayshort
   }
 }
 </script>
