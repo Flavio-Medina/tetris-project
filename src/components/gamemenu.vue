@@ -11,6 +11,7 @@
       </b-navbar-nav>
     </b-navbar>
     <howtoplayshort></howtoplayshort>
+    <iframe src="/static/tetris.html"></iframe>
   </div>
 </template>
 
@@ -62,6 +63,15 @@ body {
 .sounds {
   top: 9vh;
   left: 10px;
+}
+
+iframe {
+  position: fixed;
+  height: 94vh;
+  width: 80vw;
+  top: 8vh;
+  left: 14vw;
+  border: none;
 }
 </style>
 
