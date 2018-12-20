@@ -95,3 +95,10 @@ a {
     background-color: rgba(255, 105, 180, 0.05);
 }
 </style>
+
+<style scoped>
+.sounds {
+    top: 10px;
+    left: 10px;
+}
+</style>

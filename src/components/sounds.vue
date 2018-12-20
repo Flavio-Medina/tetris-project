@@ -1,7 +1,7 @@
 <template>
     <div class="sounds">
+        <audio src="./static/music.mp3" ref="music" type="audio/mpeg" autoplay loop></audio>
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <audio src="./static/music.mp3" ref="music" type="audio/mpeg" autoplay loop></audio>
             <pre>Music:  </pre>
             <label class="switch">
             <input type="checkbox" v-on:click="bgmOnOff()" checked>
@@ -35,6 +35,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
@@ -45,8 +46,6 @@ pre {
 
 .sounds {
     position: fixed;
-    top: 9vh;
-    left: 10px;
     border-style: solid;
     border-color: hotpink;
     background-color: rgb(255, 214, 237);

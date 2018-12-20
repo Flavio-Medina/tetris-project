@@ -58,6 +58,11 @@ body {
   margin-bottom: 0;
   color: rgb(255, 192, 227);
 }
+
+.sounds {
+  top: 9vh;
+  left: 10px;
+}
 </style>
 
 
