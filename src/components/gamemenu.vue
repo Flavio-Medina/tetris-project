@@ -16,7 +16,7 @@
 
 <script>
 import sounds from './sounds'
-import menu from './menu'
+import tmenu from './tmenu'
 import settingsgame from './settingsgame'
 import highscoregame from './highscoregame'
 import howtoplaygame from './howtoplaygame'
@@ -26,7 +26,7 @@ export default {
   name: 'gamemenu',
   components: {
     sounds,
-    menu,
+    tmenu,
     settingsgame,
     highscoregame,
     howtoplaygame,
