@@ -1,5 +1,6 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
+const linesfx = new Audio('line.wav');
 
 context.scale(20, 20);
 
@@ -137,7 +138,7 @@ document.addEventListener('keydown', event => {
   } else if (event.key === "ArrowDown") {
     softDrop();
   } else if (event.key === "ArrowUp") {
-    rotate(-1);
+    rotate(1);
   } else if (event.key === " ") {
     hardDrop();
   }
@@ -208,7 +209,7 @@ function clearRow() {
     const row = arena.splice(y, 1)[0].fill(0);
     arena.unshift(row);
     ++y;
-
+    linesfx.play();
     player.score += 10;
   }
 }
