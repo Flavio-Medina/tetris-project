@@ -138,7 +138,7 @@ document.addEventListener('keydown', event => {
     softDrop();
   } else if (event.key === "ArrowUp") {
     rotate(1);
-  } else if (event.code === "Space") {
+  } else if (event.key === " ") {
     hardDrop();
   }
 
