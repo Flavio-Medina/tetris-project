@@ -120,6 +120,7 @@ function softDrop() {
 }
 
 function hardDrop() {
+  player.score += 2;
   while(!collide(arena, player)) {
     player.position.y++;
   }
