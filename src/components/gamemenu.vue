@@ -1,16 +1,18 @@
 <template>
   <div>
-    <sounds></sounds>
+    <sounds/>
     <b-navbar class="pink" type="dark" toggleable="md" sticky>
       <b-navbar-brand to="/"><img src="/static/logo.png" alt="Tetris" id="gmlogo"></b-navbar-brand>
-      <highscoregame></highscoregame>
-      <howtoplaygame></howtoplaygame>
+      <highscoregame/>
+      <howtoplaygame/>
+      <!-- TODO
       <settingsgame></settingsgame>
       <b-navbar-nav class="ml-auto">
         <signinupgame></signinupgame>
       </b-navbar-nav>
+      -->
     </b-navbar>
-    <howtoplayshort></howtoplayshort>
+    <howtoplayshort/>
     <iframe src="/static/tetris.html"></iframe>
   </div>
 </template>
@@ -18,21 +20,21 @@
 <script>
 import sounds from './sounds'
 import tmenu from './tmenu'
-import settingsgame from './settingsgame'
+// import settingsgame from './settingsgame'
 import highscoregame from './highscoregame'
 import howtoplaygame from './howtoplaygame'
 import howtoplayshort from './howtoplayshort'
-import signinupgame from './signinupgame'
+// import signinupgame from './signinupgame'
 export default {
   name: 'gamemenu',
   components: {
     sounds,
     tmenu,
-    settingsgame,
+    // settingsgame,
     highscoregame,
     howtoplaygame,
-    howtoplayshort,
-    signinupgame
+    howtoplayshort
+    // signinupgame
   }
 }
 </script>
