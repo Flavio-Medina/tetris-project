@@ -1,3 +1,7 @@
+/* eslint-disable */
+
+module.exports = {
+mounted() {
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 const linesfx = new Audio('line.wav');
@@ -273,3 +277,5 @@ const colors = [
 reset();
 updateScore();
 update();
+}
+}

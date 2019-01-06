@@ -13,11 +13,13 @@
       -->
     </b-navbar>
     <howtoplayshort/>
-    <iframe src="/static/tetris.html"></iframe>
+    <div class="sc">Score: <span id="score"></span> </div>
+    <canvas id="tetris" width="240" height="400" />
   </div>
 </template>
 
 <script>
+import tetris from './tetris.js'
 import sounds from './sounds'
 import tmenu from './tmenu'
 // import settingsgame from './settingsgame'
@@ -35,7 +37,8 @@ export default {
     howtoplaygame,
     howtoplayshort
     // signinupgame
-  }
+  },
+  mixins: [tetris]
 }
 </script>
 
@@ -44,6 +47,31 @@ body {
   background-image: url("/static/background.jpg");
   background-repeat: no-repeat;
   background-size: 100vmax 100vmax;
+}
+
+canvas {
+  border: solid 7px hotpink;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  height: 80vh;
+}
+
+.sc {
+  font-size: 40px;
+  width: 30vw;
+  position: relative;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-color: hotpink;
+  background-color: rgb(255, 214, 237);
+  color: hotpink;
 }
 
 #gmlogo {
@@ -65,15 +93,6 @@ body {
 .sounds {
   top: 9vh;
   left: 10px;
-}
-
-iframe {
-  position: fixed;
-  height: 94vh;
-  width: 80vw;
-  top: 8vh;
-  left: 14vw;
-  border: none;
 }
 </style>
 

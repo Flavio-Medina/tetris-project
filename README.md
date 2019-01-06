@@ -9,21 +9,15 @@ Music Path: ./static/music.mp3
 
 Use the static folder to simply add media files  
 
-Progress:
-StartMenu: Music
-
-TODO (0% Progress):  
-Game Logic  
-Score  
+TODO:  
 Next Piece  
 Hold Piece  
 Difficulty  
 Balancing  
-Menu  
 Account  
 Highscore  
 Multiplayer  
-SFX  
+More SFX  
 Cats  
 
 Unnecessary features:  
