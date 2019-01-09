@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import tmenu from '@/components/tmenu'
-import gamemenu from '@/components/gamemenu'
+import startmenu from '@/components/startmenu'
+import tetris from '@/components/tetris'
+import tetrisinv from '@/components/tetrisinv'
 
 Vue.use(Router)
 
@@ -9,13 +10,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'tmenu',
-      component: tmenu
+      name: 'startmenu',
+      component: startmenu
     },
     {
-      path: '/gamemenu',
-      name: 'gamemenu',
-      component: gamemenu
+      path: '/tetris',
+      name: 'tetris',
+      component: tetris
+    },
+    {
+      path: '/tetrisinv',
+      name: 'tetrisinv',
+      component: tetrisinv
     }
   ]
 })

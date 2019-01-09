@@ -1,6 +1,10 @@
 # tetris-project
 Tetris - WT Project
 
+Tetris Code ist jetzt in tetrisgame.vue (und tetrisgameinv.vue (Invisible))  
+Eslint wurde entfernt, hat mehr genervt als geholfen.  
+Extrem viel Redundanz in tetrisgame.vue und tetrisgameinv.vue, weil Copy&Paste! :'(  
+
 In cmd or terminal in the project path: npm run dev  
 Link: localhost:8080 (should open automatically)  
 
@@ -18,7 +22,6 @@ Account
 Highscore  
 Multiplayer  
 More SFX  
-Cats  
 
 Unnecessary features:  
 Invisible Mode  

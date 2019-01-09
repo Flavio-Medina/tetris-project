@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import howtoplaymodal from './howtoplaymodal'
+import howtoplaymodal from "./howtoplaymodal";
 export default {
-  name: 'howtoplay',
+  name: "howtoplay",
   components: {
     howtoplaymodal
   }
-}
+};
 </script>

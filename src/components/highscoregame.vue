@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import highscoremodal from './highscoremodal'
+import highscoremodal from "./highscoremodal";
 export default {
-  name: 'highscore',
+  name: "highscoregame",
   components: {
     highscoremodal
   }
-}
+};
 </script>

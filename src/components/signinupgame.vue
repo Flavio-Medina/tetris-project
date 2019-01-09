@@ -1,22 +1,16 @@
 <template>
-    <div>
-        <p @click="showModal" class="gm">Sign in/up</p>
-        <b-modal ref="myModalRef" size="lg" hide-footer title="Sign in/up">
-            <p>TODO</p>
-        </b-modal>
-    </div>
+  <div>
+    <p v-b-modal.siu class="gm">Sign in/up</p>
+    <signinupmodal/>
+  </div>
 </template>
 
 <script>
-import modal from './modal'
+import signinupmodal from "./signinupmodal";
 export default {
-  name: 'signinupgame',
-  mixins: [modal]
-}
+  name: "signinupgame",
+  components: {
+    signinupmodal
+  }
+};
 </script>
-
-<style scoped>
-
-</style>
-
-
