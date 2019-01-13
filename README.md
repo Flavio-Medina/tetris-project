@@ -30,4 +30,4 @@ More cats
 
 ------ INFO -----
 Hab teile vom "Authentication system" hochgeladen.
-Auf node_modules hochladen habe ich verzichtet. Das hier dient nur der Sicherung, funktionsfähig einbinden muss ich es noch. Zusätzlich fehlen noch features, aber es grundsätzlich funktioniert es (Über Postman getestet).
+Auf node_modules hochladen habe ich verzichtet. Das hier dient nur der Sicherung, funktionsfähig einbinden muss ich es noch. Zusätzlich fehlen noch features, aber es grundsätzlich funktioniert es (Über Postman getestet). -Flavio
