@@ -12,7 +12,6 @@
         <signinupgame/>
       </b-navbar-nav>
     </b-navbar>
-    <howtoplayshort/>
   </div>
 </template>
 
@@ -22,7 +21,6 @@ import startmenu from "./startmenu";
 import gamemodegame from "./gamemodegame";
 import highscoregame from "./highscoregame";
 import howtoplaygame from "./howtoplaygame";
-import howtoplayshort from "./howtoplayshort";
 import signinupgame from "./signinupgame";
 export default {
   name: "gamemenu",
@@ -32,7 +30,6 @@ export default {
     gamemodegame,
     highscoregame,
     howtoplaygame,
-    howtoplayshort,
     signinupgame
   }
 };

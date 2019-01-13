@@ -18,3 +18,7 @@
     </p>
   </b-modal>
 </template>
+
+<style>
+@import './../../static/modal.css';
+</style>

@@ -20,3 +20,7 @@ export default {
   }
 };
 </script>
+
+<style>
+@import './../../static/modal.css';
+</style>

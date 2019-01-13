@@ -1,56 +1,50 @@
 <template>
   <div>
-    <div class="sc">
-      Score:
-      <span id="score"></span>
+    <div class="sc1P">
+      1P Score:
+      <span id="score1P"></span>
     </div>
-    <canvas id="tetris" width="240" height="400"/>
+    <div class="sc2P">
+      2P Score:
+      <span id="score2P"></span>
+    </div>
+    <canvas id="tetris1P" width="240" height="400"/>
+    <canvas id="tetris2P" width="240" height="400"/>
   </div>
 </template>
 
 <script>
-/*
-Unterschied zu tetrisgame.vue
-
-    function draw() {
-      context.fillStyle = "rgb(255, 192, 227)";
-      context.fillRect(0, 0, canvas.width, canvas.height);
-
-----> drawMatrixInv(arena, {
-        x: 0,
-        y: 0
-      });
-      drawMatrix(player.matrix, player.position);
-    }
-
-    //Neue Funktion! Nicht drawMatrix ersetzen!
-    function drawMatrixInv(matrix, offset) {
-      matrix.forEach((row, y) => {
-        row.forEach((value, x) => {
-          if (value !== 0) {
-            context.fillStyle = null;
-            context.fillRect(x + offset.x, y + offset.y, 1, 1);
-          }
-        });
-      });
-    }
-*/
 module.exports = {
   mounted() {
-    const canvas = document.getElementById("tetris");
-    const context = canvas.getContext("2d");
+    const canvas1P = document.getElementById("tetris1P");
+    const context1P = canvas1P.getContext("2d");
+    const canvas2P = document.getElementById("tetris2P");
+    const context2P = canvas2P.getContext("2d");
     const linesfx = new Audio("../../static/line.wav");
 
-    context.scale(20, 20);
+    context1P.scale(20, 20);
+    context2P.scale(20, 20);
 
-    const arena = createMatrix(12, 20);
+    const arena1P = createMatrix(12, 20);
+    const arena2P = createMatrix(12, 20);
 
-    const player = {
+    const player1 = {
       position: {
         x: 0,
         y: 0
       },
       matrix: null,
+      dropCounter: 0,
+      score: 0
+    };
+
+    const player2 = {
+      position: {
+        x: 0,
+        y: 0
+      },
+      matrix: null,
+      dropCounter: 0,
       score: 0
     };
 
@@ -62,29 +56,18 @@ module.exports = {
       return matrix;
     }
 
-    function draw() {
+    function draw(context, canvas, arena, player) {
       context.fillStyle = "rgb(255, 192, 227)";
       context.fillRect(0, 0, canvas.width, canvas.height);
 
-      drawMatrixInv(arena, {
+      drawMatrix(arena, {
         x: 0,
         y: 0
-      });
-      drawMatrix(player.matrix, player.position);
+      }, context);
+      drawMatrix(player.matrix, player.position, context);
     }
 
-    function drawMatrixInv(matrix, offset) {
-      matrix.forEach((row, y) => {
-        row.forEach((value, x) => {
-          if (value !== 0) {
-            context.fillStyle = null;
-            context.fillRect(x + offset.x, y + offset.y, 1, 1);
-          }
-        });
-      });
-    }
-
-    function drawMatrix(matrix, offset) {
+    function drawMatrix(matrix, offset, context) {
       matrix.forEach((row, y) => {
         row.forEach((value, x) => {
           if (value !== 0) {
@@ -113,7 +96,6 @@ module.exports = {
       }
     }
 
-    let dropCounter = 0;
     let dropInterval = 1000;
 
     let lastTime = 0;
@@ -121,54 +103,74 @@ module.exports = {
     function update(time = 0) {
       const deltaTime = time - lastTime;
 
-      dropCounter += deltaTime;
-      if (dropCounter > dropInterval) {
-        softDrop();
+      player1.dropCounter += deltaTime;
+      if (player1.dropCounter > dropInterval) {
+        softDrop(arena1P, player1);
+      }
+      
+      player2.dropCounter += deltaTime;
+      if (player2.dropCounter > dropInterval) {
+        softDrop(arena2P, player2);
       }
 
       lastTime = time;
 
-      draw();
+      draw(context1P, canvas1P, arena1P, player1);
+      draw(context2P, canvas2P, arena2P, player2);
       window.requestAnimationFrame(update);
     }
 
-    function softDrop() {
+    function softDrop(arena, player) {
       player.position.y++;
 
       if (collide(arena, player)) {
         player.position.y--;
         merge(arena, player);
-        reset();
-        clearRow();
-        updateScore();
+        reset(arena, player);
+        clearRow(arena, player);
+        updateScore(player);
       }
 
-      dropCounter = 0;
+      player.dropCounter = 0;
     }
 
-    function hardDrop() {
+    function hardDrop(arena, player) {
       player.score += 2;
       while (!collide(arena, player)) {
         player.position.y++;
       }
       player.position.y--;
       merge(arena, player);
-      reset();
-      clearRow();
-      updateScore();
+      reset(arena, player);
+      clearRow(arena, player);
+      updateScore(player);
     }
 
     document.addEventListener("keydown", event => {
+      if (event.key === "a" || event.key === "A") {
+        move(-1, arena1P, player1);
+      } else if (event.key === "d" || event.key === "D") {
+        move(1, arena1P, player1);
+      } else if (event.key === "s" || event.key === "S") {
+        softDrop(arena1P, player1);
+      } else if (event.key === "w" || event.key === "W") {
+        rotate(1, arena1P, player1);
+      } else if (event.key === "f" || event.key === "F") {
+        hardDrop(arena1P, player1);
+      }
+    });
+
+    document.addEventListener("keydown", event => {
       if (event.key === "ArrowLeft") {
-        move(-1);
+        move(-1, arena2P, player2);
       } else if (event.key === "ArrowRight") {
-        move(1);
+        move(1, arena2P, player2);
       } else if (event.key === "ArrowDown") {
-        softDrop();
+        softDrop(arena2P, player2);
       } else if (event.key === "ArrowUp") {
-        rotate(1);
-      } else if (event.key === " ") {
-        hardDrop();
+        rotate(1, arena2P, player2);
+      } else if (event.location === 2 && event.ctrlKey) {
+        hardDrop(arena2P, player2);
       }
     });
 
@@ -176,7 +178,7 @@ module.exports = {
       "keydown",
       function(e) {
         if (
-          ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp", "Space"].indexOf(
+          ["a", "d", "s", "w", "f", "A", "D", "S", "W", "F", "ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp", "CTRL"].indexOf(
             e.key
           ) > -1
         ) {
@@ -186,7 +188,7 @@ module.exports = {
       false
     );
 
-    function move(offset) {
+    function move(offset, arena, player) {
       player.position.x += offset;
 
       // Blöcke sollen beim Steuern nicht außerhalb des Spielfeldes gelangen
@@ -195,7 +197,7 @@ module.exports = {
       }
     }
 
-    function rotate(direction) {
+    function rotate(direction, arena, player) {
       const position = player.position.x;
       let offset = 1;
       rotateTetromino(player.matrix, direction);
@@ -225,7 +227,7 @@ module.exports = {
       }
     }
 
-    function clearRow() {
+    function clearRow(arena, player) {
       outer: for (let y = arena.length - 1; y > 0; --y) {
         for (let x = 0; x < arena[y].length; ++x) {
           if (arena[y][x] === 0) {
@@ -270,7 +272,7 @@ module.exports = {
     }
 
     // Sorgt dafür, dass ein neuer, zufälliger Block von oben fällt
-    function reset() {
+    function reset(arena, player) {
       const pieces = "TJLOSZI";
       player.matrix = createTetromino(
         pieces[(pieces.length * Math.random()) | 0]
@@ -282,12 +284,16 @@ module.exports = {
       if (collide(arena, player)) {
         arena.forEach(row => row.fill(0));
         player.score = 0;
-        updateScore();
+        updateScore(player);
       }
     }
 
-    function updateScore() {
-      document.getElementById("score").innerText = player.score;
+    function updateScore(player) {
+      if (player === player1) {
+        document.getElementById("score1P").innerText = player.score;
+      } else if (player === player2) {
+        document.getElementById("score2P").innerText = player.score;
+      }
     }
 
     const colors = [
@@ -301,8 +307,10 @@ module.exports = {
       "darkblue"
     ];
 
-    reset();
-    updateScore();
+    reset(arena1P, player1);
+    reset(arena2P, player2);
+    updateScore(player1);
+    updateScore(player2);
     update();
   }
 };
@@ -313,21 +321,27 @@ canvas {
   border: solid 7px hotpink;
   padding-left: 0;
   padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
   height: 80vh;
+  top: 16vh;
+  display: inline-block;
+  position: fixed;
 }
 
-.sc {
+#tetris1P, .sc1P {
+  right: 50vw;
+}
+
+#tetris2P, .sc2P {
+  left: 50vw;
+}
+
+.sc1P, .sc2P {
+  top: 9vh;
   font-size: 40px;
-  width: 30vw;
-  position: relative;
-  text-align: center;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  height: 70px;
+  width: 380px;
+  padding-left: 1vw;
+  position: absolute;
   border-style: solid;
   border-color: hotpink;
   background-color: rgb(255, 214, 237);

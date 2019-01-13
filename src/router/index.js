@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import startmenu from '@/components/startmenu'
 import tetris from '@/components/tetris'
 import tetrisinv from '@/components/tetrisinv'
+import tetrisMP from '@/components/tetrisMP'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/tetrisinv',
       name: 'tetrisinv',
       component: tetrisinv
+    },
+    {
+      path: '/tetrisMP',
+      name: 'tetrisMP',
+      component: tetrisMP
     }
   ]
 })

@@ -1,6 +1,5 @@
 <template>
-  <p>TODO: Replace with images
-    <br>Controls:
+  <p>Controls:
     <br>Left/Right: Move Left/Right
     <br>Up: Rotate
     <br>Down: Soft Drop

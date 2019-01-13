@@ -282,7 +282,7 @@ module.exports = {
 };
 </script>
 
-<style>
+<style scoped>
 canvas {
   border: solid 7px hotpink;
   padding-left: 0;
