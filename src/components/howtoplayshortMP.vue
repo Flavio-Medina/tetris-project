@@ -1,17 +1,17 @@
 <template>
   <div id="h2psMP">
     <p id="p1">1P Controls:
+      <br>A/D: Move Left/Right
+      <br>W: Rotate
+      <br>S: Soft Drop
+      <br>F: Hard Drop
+      <br>
+    </p>
+    <p id="p2">2P Controls:
       <br>Left/Right: Move Left/Right
       <br>Up: Rotate
       <br>Down: Soft Drop
       <br>RightCtrl: Hard Drop
-      <br>
-    </p>
-    <p id="p2">2P Controls:
-      <br>A/S: Move Left/Right
-      <br>W: Rotate
-      <br>S: Soft Drop
-      <br>F: Hard Drop
       <br>
     </p>
   </div>
