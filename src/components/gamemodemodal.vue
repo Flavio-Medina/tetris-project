@@ -10,6 +10,9 @@
       <b-button class="col align-self-center btn btn-primary" to="tetrisinv">
         <p class="btnFont">Invisible (1P)</p>
       </b-button>
+      <b-button class="col align-self-center btn btn-primary" to="tetristroll">
+        <p class="btnFont">Troll Mode</p>
+      </b-button>
     </div>
   </b-modal>
 </template>

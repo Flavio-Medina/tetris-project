@@ -9,8 +9,6 @@
       <howtoplay/>
     </div>
     <annoyingcat/>
-    <annoyingcat/>
-    <annoyingcat/>
   </div>
 </template>
 

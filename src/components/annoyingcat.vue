@@ -9,34 +9,23 @@ export default {
   name: "annoyingcat",
   methods: {
     randPos: function() {
-      this.$refs.catimg.style.top = Math.floor(Math.random() * 80) + "vh";
-      this.$refs.catimg.style.left = Math.floor(Math.random() * 80) + "vw";
-      this.$refs.catimg.style.animation = "flicker 0.5s infinite";
+      this.$refs.catimg.style.top = Math.floor(Math.random() * 100) + "vh";
+      this.$refs.catimg.style.left = Math.floor(Math.random() * 100) + "vw";
     }
   },
   mounted: function() {
-    setInterval(this.randPos, 500);
+    setInterval(this.randPos, 300);
   }
 };
 </script>
 
 <style>
-@keyframes flicker {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 
 .cat {
   /* height: 8vmax; */
-  top: 0;
+  margin-left: -10vw;
   height: 30%;
+  opacity: 0.666;
   position: fixed;
   pointer-events: none;
 }
