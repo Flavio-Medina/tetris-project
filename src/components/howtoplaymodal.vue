@@ -9,11 +9,27 @@
       As the pieces fall, your goal is to move and spin them so that they line up evenly at the bottom of the Matrix.
       To clear a line, every square of the row has to be filled.
       <br>
-      <br>Controls:
+      <br>Controls 1 Player:
+      <br>
       <br>Left/Right: Move Left/Right
       <br>Up: Rotate
       <br>Down: Soft Drop
       <br>Space: Hard Drop
+      <br>
+      <br>
+      <br>Controls 2 Players:
+      <br>
+      <br>1P Controls:
+      <br>Left/Right: Move Left/Right
+      <br>Up: Rotate
+      <br>Down: Soft Drop
+      <br>RightCtrl: Hard Drop
+      <br>
+      <br>2P Controls:
+      <br>A/S: Move Left/Right
+      <br>W: Rotate
+      <br>S: Soft Drop
+      <br>F: Hard Drop
       <br>
     </p>
   </b-modal>
