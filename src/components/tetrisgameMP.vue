@@ -4,14 +4,18 @@
       1P Score:
       <span id="score1P"></span>
       &nbsp; &nbsp; &nbsp;
-      <span>Level: <span id="level1P"></span> </span>
+      <span>Level:
+        <span id="level1P"></span>
+      </span>
     </div>
 
     <div class="sc2P">
       2P Score:
       <span id="score2P"></span>
       &nbsp; &nbsp; &nbsp;
-      <span>Level: <span id="level2P"></span> </span>
+      <span>Level:
+        <span id="level2P"></span>
+      </span>
     </div>
 
     <canvas id="tetris1P" width="240" height="400"/>
@@ -70,8 +74,26 @@ module.exports = {
       context.fillStyle = "rgb(255, 192, 227)";
       context.fillRect(0, 0, canvas.width, canvas.height);
 
-      drawMatrix(arena, {x: 0, y: 0}, context);
+      drawMatrix(arena, { x: 0, y: 0 }, context);
       drawMatrix(player.matrix, player.position, context);
+    }
+
+    function drawLines(context) {
+      context.lineWidth = 0.01;
+      context.strokeStyle = "rgb(255, 105, 180)";
+
+      for (let x = 0; x <= 12; x++) {
+        context.beginPath();
+        context.moveTo(x, 0);
+        context.lineTo(x, 20);
+        context.stroke();
+      }
+      for (let y = 0; y <= 20; y++) {
+        context.beginPath();
+        context.moveTo(0, y);
+        context.lineTo(12, y);
+        context.stroke();
+      }
     }
 
     function drawMatrix(matrix, offset, context) {
@@ -83,6 +105,7 @@ module.exports = {
           }
         });
       });
+      drawLines(context);
     }
 
     function createTetromino(type) {
@@ -109,20 +132,16 @@ module.exports = {
       if (player1.score >= 40 && player1.score <= 79) {
         player1.level = 2;
         player1.dropInterval = 750;
-      }
-      else if (player1.score >= 80 && player1.score <= 119) {
+      } else if (player1.score >= 80 && player1.score <= 119) {
         player1.level = 3;
         player1.dropInterval = 500;
-      }
-      else if (player1.score >= 120 && player1.score <= 159) {
+      } else if (player1.score >= 120 && player1.score <= 159) {
         player1.level = 4;
         player1.dropInterval = 250;
-      }
-      else if (player1.score >= 160 && player1.score <= 199) {
+      } else if (player1.score >= 160 && player1.score <= 199) {
         player1.level = 5;
         player1.dropInterval = 125;
-      }
-      else if (player1.score >= 200) {
+      } else if (player1.score >= 200) {
         player1.level = 6;
         player1.dropInterval = 62.5;
       }
@@ -132,26 +151,21 @@ module.exports = {
       if (player2.score >= 40 && player2.score <= 79) {
         player2.level = 2;
         player2.dropInterval = 750;
-      }
-      else if (player2.score >= 80 && player2.score <= 119) {
+      } else if (player2.score >= 80 && player2.score <= 119) {
         player2.level = 3;
         player2.dropInterval = 500;
-      }
-      else if (player2.score >= 120 && player2.score <= 159) {
+      } else if (player2.score >= 120 && player2.score <= 159) {
         player2.level = 4;
         player2.dropInterval = 250;
-      }
-      else if (player2.score >= 160 && player2.score <= 199) {
+      } else if (player2.score >= 160 && player2.score <= 199) {
         player2.level = 5;
         player2.dropInterval = 125;
-      }
-      else if (player2.score >= 200) {
+      } else if (player2.score >= 200) {
         player2.level = 6;
         player2.dropInterval = 62.5;
       }
 
       updateScoreAndLevel(player2);
-
 
       const deltaTime = time - lastTime;
 
@@ -159,7 +173,7 @@ module.exports = {
       if (player1.dropCounter > player1.dropInterval) {
         softDrop(arena1P, player1);
       }
-      
+
       player2.dropCounter += deltaTime;
       if (player2.dropCounter > player2.dropInterval) {
         softDrop(arena2P, player2);
@@ -171,7 +185,6 @@ module.exports = {
       draw(context2P, canvas2P, arena2P, player2);
       window.requestAnimationFrame(updateGame);
     }
-
 
     function softDrop(arena, player) {
       player.position.y++;
@@ -231,9 +244,23 @@ module.exports = {
       "keydown",
       function(e) {
         if (
-          ["a", "d", "s", "w", "f", "A", "D", "S", "W", "F", "ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp", "CTRL"].indexOf(
-            e.key
-          ) > -1
+          [
+            "a",
+            "d",
+            "s",
+            "w",
+            "f",
+            "A",
+            "D",
+            "S",
+            "W",
+            "F",
+            "ArrowLeft",
+            "ArrowRight",
+            "ArrowDown",
+            "ArrowUp",
+            "CTRL"
+          ].indexOf(e.key) > -1
         ) {
           e.preventDefault();
         }
@@ -383,15 +410,18 @@ canvas {
   position: fixed;
 }
 
-#tetris1P, .sc1P {
+#tetris1P,
+.sc1P {
   right: 50vw;
 }
 
-#tetris2P, .sc2P {
+#tetris2P,
+.sc2P {
   left: 50vw;
 }
 
-.sc1P, .sc2P {
+.sc1P,
+.sc2P {
   font-size: 5vh;
   bottom: 84vh;
   padding-left: 1vw;

@@ -47,6 +47,24 @@ module.exports = {
       drawMatrix(player.matrix, player.position);
     }
 
+    function drawLines() {
+      context.lineWidth = 0.01;
+      context.strokeStyle = "rgb(255, 105, 180)";
+
+      for (let x = 0; x <= 12; x++) {
+        context.beginPath();
+        context.moveTo( x, 0);
+        context.lineTo( x, 20);
+        context.stroke();
+      }
+      for (let y = 0; y <= 20; y++) {
+        context.beginPath();
+        context.moveTo( 0, y);
+        context.lineTo( 12, y);
+        context.stroke();
+      }
+    }
+
     function drawMatrix(matrix, offset) {
       matrix.forEach((row, y) => {
         row.forEach((value, x) => {
@@ -56,6 +74,7 @@ module.exports = {
           }
         });
       });
+      drawLines();
     }
 
     function createTetromino(type) {

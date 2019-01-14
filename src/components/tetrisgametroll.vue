@@ -4,7 +4,9 @@
       Score:
       <span id="score"></span>
       &nbsp; &nbsp; &nbsp;
-      <span>Level: <span id="level"></span> </span>
+      <span>Level:
+        <span id="level"></span>
+      </span>
     </div>
     <canvas id="tetris" width="240" height="400"/>
   </div>
@@ -50,6 +52,24 @@ module.exports = {
       drawMatrix(player.matrix, player.position);
     }
 
+    function drawLines() {
+      context.lineWidth = 0.5;
+      context.strokeStyle = "rgb(255, 105, 180)";
+
+      for (let x = 0; x <= 12; x++) {
+        context.beginPath();
+        context.moveTo(x, 0);
+        context.lineTo(x, 20);
+        context.stroke();
+      }
+      for (let y = 0; y <= 20; y++) {
+        context.beginPath();
+        context.moveTo(0, y);
+        context.lineTo(12, y);
+        context.stroke();
+      }
+    }
+
     function drawMatrix(matrix, offset) {
       matrix.forEach((row, y) => {
         row.forEach((value, x) => {
@@ -59,6 +79,7 @@ module.exports = {
           }
         });
       });
+      drawLines();
     }
 
     function createTetromino(type) {
@@ -88,20 +109,16 @@ module.exports = {
       if (player.score >= 40 && player.score <= 79) {
         player.level = 2;
         dropInterval = 750;
-      }
-      else if (player.score >= 80 && player.score <= 119) {
+      } else if (player.score >= 80 && player.score <= 119) {
         player.level = 3;
         dropInterval = 500;
-      }
-      else if (player.score >= 120 && player.score <= 159) {
+      } else if (player.score >= 120 && player.score <= 159) {
         player.level = 4;
         dropInterval = 250;
-      }
-      else if (player.score >= 160 && player.score <= 199) {
+      } else if (player.score >= 160 && player.score <= 199) {
         player.level = 5;
         dropInterval = 125;
-      }
-      else if (player.score >= 200) {
+      } else if (player.score >= 200) {
         player.level = 6;
         dropInterval = 62.5;
       }
@@ -163,11 +180,7 @@ module.exports = {
     window.addEventListener(
       "keydown",
       function(e) {
-        if (
-          ["p", "C", "q", "L", "4"].indexOf(
-            e.key
-          ) > -1
-        ) {
+        if (["p", "C", "q", "L", "4"].indexOf(e.key) > -1) {
           e.preventDefault();
         }
       },
