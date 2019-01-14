@@ -3,11 +3,17 @@
     <div class="sc1P">
       1P Score:
       <span id="score1P"></span>
+      &nbsp; &nbsp; &nbsp;
+      <span>Level: <span id="level1P"></span> </span>
     </div>
+
     <div class="sc2P">
       2P Score:
       <span id="score2P"></span>
+      &nbsp; &nbsp; &nbsp;
+      <span>Level: <span id="level2P"></span> </span>
     </div>
+
     <canvas id="tetris1P" width="240" height="400"/>
     <canvas id="tetris2P" width="240" height="400"/>
   </div>
@@ -35,7 +41,9 @@ module.exports = {
       },
       matrix: null,
       dropCounter: 0,
-      score: 0
+      score: 0,
+      dropInterval: 1000,
+      level: 1
     };
 
     const player2 = {
@@ -45,7 +53,9 @@ module.exports = {
       },
       matrix: null,
       dropCounter: 0,
-      score: 0
+      score: 0,
+      dropInterval: 1000,
+      level: 1
     };
 
     function createMatrix(width, height) {
@@ -60,10 +70,7 @@ module.exports = {
       context.fillStyle = "rgb(255, 192, 227)";
       context.fillRect(0, 0, canvas.width, canvas.height);
 
-      drawMatrix(arena, {
-        x: 0,
-        y: 0
-      }, context);
+      drawMatrix(arena, {x: 0, y: 0}, context);
       drawMatrix(player.matrix, player.position, context);
     }
 
@@ -96,20 +103,65 @@ module.exports = {
       }
     }
 
-    let dropInterval = 1000;
-
     let lastTime = 0;
 
-    function update(time = 0) {
+    function updateGame(time = 0) {
+      if (player1.score >= 40 && player1.score <= 79) {
+        player1.level = 2;
+        player1.dropInterval = 750;
+      }
+      else if (player1.score >= 80 && player1.score <= 119) {
+        player1.level = 3;
+        player1.dropInterval = 500;
+      }
+      else if (player1.score >= 120 && player1.score <= 159) {
+        player1.level = 4;
+        player1.dropInterval = 250;
+      }
+      else if (player1.score >= 160 && player1.score <= 199) {
+        player1.level = 5;
+        player1.dropInterval = 125;
+      }
+      else if (player1.score >= 200) {
+        player1.level = 6;
+        player1.dropInterval = 62.5;
+      }
+
+      updateScoreAndLevel(player1);
+
+      if (player2.score >= 40 && player2.score <= 79) {
+        player2.level = 2;
+        player2.dropInterval = 750;
+      }
+      else if (player2.score >= 80 && player2.score <= 119) {
+        player2.level = 3;
+        player2.dropInterval = 500;
+      }
+      else if (player2.score >= 120 && player2.score <= 159) {
+        player2.level = 4;
+        player2.dropInterval = 250;
+      }
+      else if (player2.score >= 160 && player2.score <= 199) {
+        player2.level = 5;
+        player2.dropInterval = 125;
+      }
+      else if (player2.score >= 200) {
+        player2.level = 6;
+        player2.dropInterval = 62.5;
+      }
+
+      updateScoreAndLevel(player2);
+
+
       const deltaTime = time - lastTime;
 
       player1.dropCounter += deltaTime;
-      if (player1.dropCounter > dropInterval) {
+      if (player1.dropCounter > player1.dropInterval) {
         softDrop(arena1P, player1);
       }
       
       player2.dropCounter += deltaTime;
-      if (player2.dropCounter > dropInterval) {
+      if (player2.dropCounter > player2.dropInterval) {
         softDrop(arena2P, player2);
       }
 
@@ -117,8 +169,9 @@ module.exports = {
 
       draw(context1P, canvas1P, arena1P, player1);
       draw(context2P, canvas2P, arena2P, player2);
-      window.requestAnimationFrame(update);
+      window.requestAnimationFrame(updateGame);
     }
+
 
     function softDrop(arena, player) {
       player.position.y++;
@@ -128,7 +181,7 @@ module.exports = {
         merge(arena, player);
         reset(arena, player);
         clearRow(arena, player);
-        updateScore(player);
+        updateScoreAndLevel(player);
       }
 
       player.dropCounter = 0;
@@ -143,7 +196,7 @@ module.exports = {
       merge(arena, player);
       reset(arena, player);
       clearRow(arena, player);
-      updateScore(player);
+      updateScoreAndLevel(player);
     }
 
     document.addEventListener("keydown", event => {
@@ -284,15 +337,19 @@ module.exports = {
       if (collide(arena, player)) {
         arena.forEach(row => row.fill(0));
         player.score = 0;
-        updateScore(player);
+        player.level = 1;
+        player.dropInterval = 1000;
+        updateScoreAndLevel(player);
       }
     }
 
-    function updateScore(player) {
+    function updateScoreAndLevel(player) {
       if (player === player1) {
         document.getElementById("score1P").innerText = player.score;
+        document.getElementById("level1P").innerText = player.level;
       } else if (player === player2) {
         document.getElementById("score2P").innerText = player.score;
+        document.getElementById("level2P").innerText = player.level;
       }
     }
 
@@ -309,9 +366,9 @@ module.exports = {
 
     reset(arena1P, player1);
     reset(arena2P, player2);
-    updateScore(player1);
-    updateScore(player2);
-    update();
+    updateScoreAndLevel(player1);
+    updateScoreAndLevel(player2);
+    updateGame();
   }
 };
 </script>
