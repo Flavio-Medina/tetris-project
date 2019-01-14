@@ -81,7 +81,7 @@ module.exports = {
 
     let lastTime = 0;
 
-    function update(time = 0) {
+    function updateGame(time = 0) {
       if (player.score >= 40 && player.score <= 79) {
         player.level = 2;
         dropInterval = 750;
@@ -114,7 +114,7 @@ module.exports = {
       lastTime = time;
 
       draw();
-      window.requestAnimationFrame(update);
+      window.requestAnimationFrame(updateGame);
     }
 
 
@@ -293,7 +293,7 @@ module.exports = {
 
     reset();
     updateScoreAndLevel();
-    update();
+    updateGame();
   }
 };
 </script>
