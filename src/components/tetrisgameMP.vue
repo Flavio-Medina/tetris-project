@@ -405,7 +405,7 @@ canvas {
   border: solid 7px hotpink;
   height: 80vmax;
   max-height: 80vh;
-  bottom: 4vh;
+  bottom: 1.1vh;
   display: inline-block;
   position: fixed;
 }
@@ -423,7 +423,7 @@ canvas {
 .sc1P,
 .sc2P {
   font-size: 5vh;
-  bottom: 84vh;
+  bottom: 81vh;
   padding-left: 1vw;
   padding-right: 1vw;
   margin-bottom: 0;
