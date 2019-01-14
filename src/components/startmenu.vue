@@ -1,7 +1,8 @@
 <template>
   <div>
     <img src="/static/logo.png" alt="Tetris" id="mlogo">
-    <signinup/>
+    <btnregister/>
+    <btnlogin/>
     <sounds/>
     <div class="container">
       <gamemode/>
@@ -16,9 +17,10 @@
 import howtoplay from "./howtoplay";
 import highscore from "./highscore";
 import sounds from "./sounds";
-import signinup from "./signinup";
 import gamemode from "./gamemode";
 import annoyingcat from "./annoyingcat";
+import btnregister from "./btnregister";
+import btnlogin from "./btnlogin";
 
 export default {
   components: {
@@ -26,7 +28,8 @@ export default {
     highscore,
     sounds,
     gamemode,
-    signinup,
+    btnregister,
+    btnlogin,
     annoyingcat
   }
 };

@@ -5,6 +5,8 @@ import tetris from '@/components/tetris'
 import tetrisinv from '@/components/tetrisinv'
 import tetrisMP from '@/components/tetrisMP'
 import tetristroll from '@/components/tetristroll'
+import register from '@/components/register'
+import login from '@/components/login'
 
 Vue.use(Router)
 
@@ -35,5 +37,15 @@ export default new Router({
       name: 'tetristroll',
       component: tetristroll
     },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
+    }
   ]
 })
