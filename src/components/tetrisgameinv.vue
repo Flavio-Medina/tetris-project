@@ -3,6 +3,8 @@
     <div class="sc">
       Score:
       <span id="score"></span>
+      &nbsp; &nbsp; &nbsp;
+      <span>Level: <span id="level"></span> </span>
     </div>
     <canvas id="tetris" width="240" height="400"/>
   </div>
@@ -51,7 +53,8 @@ module.exports = {
         y: 0
       },
       matrix: null,
-      score: 0
+      score: 0,
+      level: 1
     };
 
     function createMatrix(width, height) {
@@ -66,10 +69,7 @@ module.exports = {
       context.fillStyle = "rgb(255, 192, 227)";
       context.fillRect(0, 0, canvas.width, canvas.height);
 
-      drawMatrixInv(arena, {
-        x: 0,
-        y: 0
-      });
+      drawMatrixInv(arena, {x: 0, y: 0});
       drawMatrix(player.matrix, player.position);
     }
 
@@ -119,6 +119,28 @@ module.exports = {
     let lastTime = 0;
 
     function update(time = 0) {
+      if (player.score >= 40 && player.score <= 79) {
+        player.level = 2;
+        dropInterval = 750;
+      }
+      else if (player.score >= 80 && player.score <= 119) {
+        player.level = 3;
+        dropInterval = 500;
+      }
+      else if (player.score >= 120 && player.score <= 159) {
+        player.level = 4;
+        dropInterval = 250;
+      }
+      else if (player.score >= 160 && player.score <= 199) {
+        player.level = 5;
+        dropInterval = 125;
+      }
+      else if (player.score >= 200) {
+        player.level = 6;
+        dropInterval = 62.5;
+      }
+      updateScoreAndLevel();
+
       const deltaTime = time - lastTime;
 
       dropCounter += deltaTime;
@@ -140,7 +162,7 @@ module.exports = {
         merge(arena, player);
         reset();
         clearRow();
-        updateScore();
+        updateScoreAndLevel();
       }
 
       dropCounter = 0;
@@ -155,7 +177,7 @@ module.exports = {
       merge(arena, player);
       reset();
       clearRow();
-      updateScore();
+      updateScoreAndLevel();
     }
 
     document.addEventListener("keydown", event => {
@@ -280,14 +302,18 @@ module.exports = {
         ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
 
       if (collide(arena, player)) {
+        alert("Game over! Your score: " + player.score);
         arena.forEach(row => row.fill(0));
+        dropInterval = 1000;
         player.score = 0;
-        updateScore();
+        player.level = 1;
+        updateScoreAndLevel();
       }
     }
 
-    function updateScore() {
+    function updateScoreAndLevel() {
       document.getElementById("score").innerText = player.score;
+      document.getElementById("level").innerText = player.level;
     }
 
     const colors = [
@@ -302,7 +328,7 @@ module.exports = {
     ];
 
     reset();
-    updateScore();
+    updateScoreAndLevel();
     update();
   }
 };
