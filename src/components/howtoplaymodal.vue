@@ -30,11 +30,10 @@
       <br>Up: Rotate
       <br>Down: Soft Drop
       <br>RightCtrl: Hard Drop
-      <br>
     </p>
   </b-modal>
 </template>
 
 <style>
-@import './../../static/modal.css';
+@import '../assets/css/modal.css';
 </style>

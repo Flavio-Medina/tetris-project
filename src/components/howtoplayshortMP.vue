@@ -1,5 +1,5 @@
 <template>
-  <div id="h2psMP">
+  <div>
     <p id="p1">1P Controls:
       <br>A/D: Move Left/Right
       <br>W: Rotate
@@ -36,4 +36,13 @@ p {
   right: 10px;
 }
 </style>
+
+<style>
+@media (max-width: 1360px) {
+  #p1, #p2 {
+    display: none;
+  }
+}
+</style>
+
 

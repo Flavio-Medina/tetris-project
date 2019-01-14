@@ -1,5 +1,5 @@
 <template>
-  <p>Controls:
+  <p id="h2ps">Controls:
     <br>Left/Right: Move Left/Right
     <br>Up: Rotate
     <br>Down: Soft Drop
@@ -21,3 +21,10 @@ p {
 }
 </style>
 
+<style>
+@media (max-width: 900px) {
+  #h2ps {
+    display: none;
+  }
+}
+</style>

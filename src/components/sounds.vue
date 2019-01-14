@@ -2,15 +2,14 @@
   <div class="sounds">
     <audio src="./static/music.mp3" ref="music" type="audio/mpeg" autoplay loop></audio>
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <pre>Music:  </pre>
+      <pre>Music: </pre>
       <label class="switch">
         <input type="checkbox" v-on:click="bgmOnOff()" checked>
         <span class="slider"></span>
       </label>
     </div>
-    <br>
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <pre>SFX:    </pre>
+      <pre> SFX: </pre>
       <label class="switch">
         <input type="checkbox" checked>
         <span class="slider"></span>
@@ -49,6 +48,7 @@ pre {
   border-color: hotpink;
   background-color: rgb(255, 214, 237);
   padding: 4px;
+  margin-left: 0px;
 }
 
 .switch {
@@ -101,5 +101,11 @@ input:checked + .slider:before {
   -webkit-transform: translateX(13px);
   -ms-transform: translateX(13px);
   transform: translateX(13px);
+}
+
+@media (max-width: 900px) {
+  .sounds {
+    display: none;
+  }
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div id="gmb">
     <sounds/>
     <b-navbar class="pink" type="dark" toggleable="md" sticky>
       <b-navbar-brand to="/">
         <img src="/static/logo.png" alt="Tetris" id="gmlogo">
       </b-navbar-brand>
+      <gamemodegame/>
       <highscoregame/>
       <howtoplaygame/>
-      <gamemodegame/>
       <b-navbar-nav class="ml-auto">
         <signinupgame/>
       </b-navbar-nav>
@@ -48,21 +48,30 @@ body {
 
 .pink {
   background-color: rgb(255, 105, 180);
+  max-height: 68px;
 }
 
 .gm {
   cursor: pointer;
   font-size: 32px;
-  margin-left: 4vmax;
+  margin-left: 2vw;
   margin-bottom: 0;
   color: rgb(255, 192, 227);
+  white-space: nowrap;
 }
 
 .sounds {
   top: 9vh;
   left: 10px;
 }
+
+@media (max-width: 900px) {
+  #gmb {
+    display: none;
+  }
+}
 </style>
+
 
 
 

@@ -309,28 +309,5 @@ module.exports = {
 </script>
 
 <style scoped>
-canvas {
-  border: solid 7px hotpink;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  height: 80vh;
-}
-
-.sc {
-  font-size: 40px;
-  width: 30vw;
-  position: relative;
-  text-align: center;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  border-style: solid;
-  border-color: hotpink;
-  background-color: rgb(255, 214, 237);
-  color: hotpink;
-}
+@import "../assets/css/tetrisgame.css";
 </style>

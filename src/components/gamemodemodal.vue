@@ -8,7 +8,7 @@
         <p class="btnFont">2 Players</p>
       </b-button>
       <b-button class="col align-self-center btn btn-primary" to="tetrisinv">
-        <p class="btnFont">Invisible (1P)</p>
+        <p class="btnFont">Invisible</p>
       </b-button>
       <b-button class="col align-self-center btn btn-primary" to="tetristroll">
         <p class="btnFont">Troll Mode</p>
@@ -18,5 +18,5 @@
 </template>
 
 <style>
-@import './../../static/modal.css';
+@import '../assets/css/modal.css';
 </style>

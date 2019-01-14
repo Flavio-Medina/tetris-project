@@ -319,10 +319,9 @@ module.exports = {
 <style scoped>
 canvas {
   border: solid 7px hotpink;
-  padding-left: 0;
-  padding-right: 0;
-  height: 80vh;
-  top: 16vh;
+  height: 80vmax;
+  max-height: 80vh;
+  bottom: 4vh;
   display: inline-block;
   position: fixed;
 }
@@ -336,14 +335,13 @@ canvas {
 }
 
 .sc1P, .sc2P {
-  top: 9vh;
-  font-size: 40px;
-  height: 70px;
-  width: 380px;
+  font-size: 5vh;
+  bottom: 84vh;
   padding-left: 1vw;
-  position: absolute;
-  border-style: solid;
-  border-color: hotpink;
+  padding-right: 1vw;
+  margin-bottom: 0;
+  position: fixed;
+  border: solid 5px hotpink;
   background-color: rgb(255, 214, 237);
   color: hotpink;
 }

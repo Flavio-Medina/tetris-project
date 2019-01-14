@@ -22,5 +22,5 @@ export default {
 </script>
 
 <style>
-@import './../../static/modal.css';
+@import '../assets/css/modal.css';
 </style>
