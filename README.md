@@ -1,3 +1,7 @@
+#Hinweis:
+Das Projekt lässt sich ohne die Datenbank starten. Ihr bekommt nur eine Fehlermeldung in der Konsole, die könnt ihr aber ignorieren. Getestet ist es und es funktioniert, wie genau zeig ich euch morgen genauer. Es müssen nur noch paar Anpassungen im Frontend getan werden und ich muss noch die eine oder andere Kleinigkeit dran ändern. -Flavio (15.01)
+
+
 # tetris-project
 Tetris - WT Project
 
@@ -27,7 +31,3 @@ Unnecessary features:
 Invisible Mode  
 Troll Mode  
 More cats  
-
------- INFO -----
-Hab teile vom "Authentication system" hochgeladen.
-Auf node_modules hochladen habe ich verzichtet. Das hier dient nur der Sicherung, funktionsfähig einbinden muss ich es noch. Zusätzlich fehlen noch features, aber es grundsätzlich funktioniert es (Über Postman getestet). -Flavio
