@@ -1,20 +1,22 @@
 canvas {
   border: solid 7px hotpink;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  height: 80vmax;
-  max-height: 80vh;
-  bottom: 4vh;
+  height: 80vh;
+  bottom: 6vh;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
 }
 
 .sc {
-  font-size: 40px;
-  width: 30vw;
-  position: relative;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 38px;
+  width: 260px;
+  padding-left: 12px;
+  top: 14vh;
+  left: 78vh;
+  right: 0;
+  margin: auto;
+  position: absolute;
   border: solid 5px hotpink;
   background-color: rgb(255, 214, 237);
   color: hotpink;
@@ -22,5 +24,11 @@ canvas {
 
 #gameovermodal {
   font-size: 64px;
-  text-align: center;
+  padding-left: 40px;
+}
+
+@media (max-width: 900px) {
+  .sc {
+    display: none;
+  }
 }

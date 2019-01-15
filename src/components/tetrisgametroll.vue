@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div class="sc">
-      Score: -
-      <span class="score"></span>
-      &nbsp; &nbsp; &nbsp;
-      <span>
-        Level: -
-        <span id="level"></span>
-      </span>
-    </div>
+    <audio src="./static/cat.mp3" ref="sfx" type="audio/mpeg" autoplay loop></audio>
     <canvas id="tetris" width="240" height="400"/>
+    <p class="sc">
+      Score:
+      <span class="score"></span>
+      <br>Level:
+      <span class="level"></span>
+      <br>Lines:
+      <span class="lines"></span>
+    </p>
     <b-modal
       ref="go"
       size="lg"
@@ -17,12 +17,14 @@
       no-close-on-esc
       no-close-on-backdrop
       no-fade
+      no-enforce-focus
       hide-header-close
       centered
       title="Game Over"
     >
       <p id="gameovermodal">Points: -123456789abc
         <br>Level: Noob
+        <br>Lines: Not enough!
       </p>
       <div class="container">
         <b-button class="col align-self-center btn btn-primary" id="resta">
@@ -41,7 +43,7 @@ module.exports = {
   mounted() {
     const canvas = document.getElementById("tetris");
     const context = canvas.getContext("2d");
-    const linesfx = new Audio("../../static/line.wav");
+    const linesfx = new Audio("../../static/cat.mp3");
     const gom = this.$refs.go;
     document.getElementById("resta").onclick = function() {
       restart();
@@ -58,7 +60,8 @@ module.exports = {
       },
       matrix: null,
       score: 0,
-      level: 1
+      level: 1,
+      lines: 0
     };
 
     function createMatrix(width, height) {
@@ -183,7 +186,7 @@ module.exports = {
 
     function hardDrop() {
       if (!collide(arena, player)) {
-        player.score += 2;
+        player.score += 1;
         while (!collide(arena, player)) {
           player.position.y++;
         }
@@ -273,8 +276,11 @@ module.exports = {
         const row = arena.splice(y, 1)[0].fill(0);
         arena.unshift(row);
         ++y;
-        linesfx.play();
+        if (document.getElementById("sfx").checked === true) {
+          linesfx.play();
+        }
         player.score += 10;
+        player.lines += 1;
       }
     }
 
@@ -327,13 +333,15 @@ module.exports = {
       dropInterval = 1000;
       player.score = 0;
       player.level = 1;
+      player.lines = 0;
       updateScoreAndLevel();
     }
 
     function updateScoreAndLevel() {
       try {
         document.getElementsByClassName("score")[0].innerText = player.score;
-        document.getElementById("level").innerText = player.level;
+        document.getElementsByClassName("level")[0].innerText = player.level;
+        document.getElementsByClassName("lines")[0].innerText = player.lines;
       } catch (error) {}
     }
 

@@ -1,15 +1,14 @@
 <template>
   <div>
-    <div class="sc">
+    <canvas id="tetris" width="240" height="400"/>
+    <p class="sc">
       Score:
       <span class="score"></span>
-      &nbsp; &nbsp; &nbsp;
-      <span>
-        Level:
-        <span class="level"></span>
-      </span>
-    </div>
-    <canvas id="tetris" width="240" height="400"/>
+      <br>Level:
+      <span class="level"></span>
+      <br>Lines:
+      <span class="lines"></span>
+    </p>
     <b-modal
       ref="go"
       size="lg"
@@ -17,6 +16,7 @@
       no-close-on-esc
       no-close-on-backdrop
       no-fade
+      no-enforce-focus
       hide-header-close
       centered
       title="Game Over"
@@ -44,7 +44,7 @@ module.exports = {
   mounted() {
     const canvas = document.getElementById("tetris");
     const context = canvas.getContext("2d");
-    const linesfx = new Audio("../../static/line.wav");
+    const linesfx = new Audio("../../static/cat.mp3");
     const gom = this.$refs.go;
     document.getElementById("resta").onclick = function() {
       restart();
@@ -61,7 +61,8 @@ module.exports = {
       },
       matrix: null,
       score: 0,
-      level: 1
+      level: 1,
+      lines: 0
     };
 
     function createMatrix(width, height) {
@@ -194,7 +195,7 @@ module.exports = {
 
     function hardDrop() {
       if (!collide(arena, player)) {
-        player.score += 2;
+        player.score += 1;
         while (!collide(arena, player)) {
           player.position.y++;
         }
@@ -288,8 +289,11 @@ module.exports = {
         const row = arena.splice(y, 1)[0].fill(0);
         arena.unshift(row);
         ++y;
-        linesfx.play();
+        if (document.getElementById("sfx").checked === true) {
+          linesfx.play();
+        }
         player.score += 10;
+        player.lines += 1;
       }
     }
 
@@ -342,6 +346,7 @@ module.exports = {
       dropInterval = 1000;
       player.score = 0;
       player.level = 1;
+      player.lines = 0;
       updateScoreAndLevel();
     }
 
@@ -351,6 +356,8 @@ module.exports = {
         document.getElementsByClassName("score")[1].innerText = player.score;
         document.getElementsByClassName("level")[0].innerText = player.level;
         document.getElementsByClassName("level")[1].innerText = player.level;
+        document.getElementsByClassName("lines")[0].innerText = player.lines;
+        document.getElementsByClassName("lines")[1].innerText = player.lines;
       } catch (error) {}
     }
 

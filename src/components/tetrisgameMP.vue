@@ -1,27 +1,55 @@
 <template>
   <div>
-    <div class="sc1P">
-      1P Score:
-      <span id="score1P"></span>
-      &nbsp; &nbsp; &nbsp;
-      <span>
-        Level:
-        <span id="level1P"></span>
-      </span>
-    </div>
-
-    <div class="sc2P">
-      2P Score:
-      <span id="score2P"></span>
-      &nbsp; &nbsp; &nbsp;
-      <span>
-        Level:
-        <span id="level2P"></span>
-      </span>
-    </div>
-
     <canvas id="tetris1P" width="240" height="400"/>
     <canvas id="tetris2P" width="240" height="400"/>
+    <p class="sc1P">
+      Score:
+      <span class="score1P"></span>
+      <br>Level:
+      <span class="level1P"></span>
+      <br>Lines:
+      <span class="lines1P"></span>
+      <br>Game Over:
+      <span class="gameover1P"></span>
+    </p>
+
+    <p class="sc2P">
+      Score:
+      <span class="score2P"></span>
+      <br>Level:
+      <span class="level2P"></span>
+      <br>Lines:
+      <span class="lines2P"></span>
+      <br>Game Over:
+      <span class="gameover2P"></span>
+    </p>
+    <p class="scs1P">
+      Score:
+      <span class="score1P"></span>
+      &nbsp; &nbsp;
+      Level:
+      <span class="level1P"></span>
+      &nbsp; &nbsp;
+      Lines:
+      <span class="lines1P"></span>
+      &nbsp; &nbsp;
+      Game Over:
+      <span class="gameover1P"></span>
+    </p>
+
+    <p class="scs2P">
+      Score:
+      <span class="score2P"></span>
+      &nbsp; &nbsp;
+      Level:
+      <span class="level2P"></span>
+      &nbsp; &nbsp;
+      Lines:
+      <span class="lines2P"></span>
+      &nbsp; &nbsp;
+      Game Over:
+      <span class="gameover2P"></span>
+    </p>
   </div>
 </template>
 
@@ -32,7 +60,7 @@ module.exports = {
     const context1P = canvas1P.getContext("2d");
     const canvas2P = document.getElementById("tetris2P");
     const context2P = canvas2P.getContext("2d");
-    const linesfx = new Audio("../../static/line.wav");
+    const linesfx = new Audio("../../static/cat.mp3");
 
     context1P.scale(20, 20);
     context2P.scale(20, 20);
@@ -49,7 +77,9 @@ module.exports = {
       dropCounter: 0,
       score: 0,
       dropInterval: 1000,
-      level: 1
+      level: 1,
+      lines: 0,
+      gameover: 0
     };
 
     const player2 = {
@@ -61,7 +91,9 @@ module.exports = {
       dropCounter: 0,
       score: 0,
       dropInterval: 1000,
-      level: 1
+      level: 1,
+      lines: 0,
+      gameover: 0
     };
 
     function createMatrix(width, height) {
@@ -206,7 +238,7 @@ module.exports = {
 
     function hardDrop(arena, player) {
       if (!collide(arena, player)) {
-        player.score += 2;
+        player.score += 1;
         while (!collide(arena, player)) {
           player.position.y++;
         }
@@ -328,8 +360,11 @@ module.exports = {
         const row = arena.splice(y, 1)[0].fill(0);
         arena.unshift(row);
         ++y;
-        linesfx.play();
+        if (document.getElementById("sfx").checked === true) {
+          linesfx.play();
+        }
         player.score += 10;
+        player.lines += 1;
       }
     }
 
@@ -375,7 +410,9 @@ module.exports = {
         arena.forEach(row => row.fill(0));
         player.score = 0;
         player.level = 1;
+        player.level = 0;
         player.dropInterval = 1000;
+        player.gameover += 1;
         updateScoreAndLevel(player);
       }
     }
@@ -383,11 +420,39 @@ module.exports = {
     function updateScoreAndLevel(player) {
       try {
         if (player === player1) {
-          document.getElementById("score1P").innerText = player.score;
-          document.getElementById("level1P").innerText = player.level;
+          document.getElementsByClassName("score1P")[0].innerText =
+            player.score;
+          document.getElementsByClassName("level1P")[0].innerText =
+            player.level;
+          document.getElementsByClassName("lines1P")[0].innerText =
+            player.lines;
+          document.getElementsByClassName("gameover1P")[0].innerText =
+            player.gameover;
+          document.getElementsByClassName("score1P")[1].innerText =
+            player.score;
+          document.getElementsByClassName("level1P")[1].innerText =
+            player.level;
+          document.getElementsByClassName("lines1P")[1].innerText =
+            player.lines;
+          document.getElementsByClassName("gameover1P")[1].innerText =
+            player.gameover;
         } else if (player === player2) {
-          document.getElementById("score2P").innerText = player.score;
-          document.getElementById("level2P").innerText = player.level;
+          document.getElementsByClassName("score2P")[0].innerText =
+            player.score;
+          document.getElementsByClassName("level2P")[0].innerText =
+            player.level;
+          document.getElementsByClassName("lines2P")[0].innerText =
+            player.lines;
+          document.getElementsByClassName("gameover2P")[0].innerText =
+            player.gameover;
+          document.getElementsByClassName("score2P")[1].innerText =
+            player.score;
+          document.getElementsByClassName("level2P")[1].innerText =
+            player.level;
+          document.getElementsByClassName("lines2P")[1].innerText =
+            player.lines;
+          document.getElementsByClassName("gameover2P")[1].innerText =
+            player.gameover;
         }
       } catch (error) {}
     }
@@ -414,34 +479,72 @@ module.exports = {
 
 <style scoped>
 canvas {
-  border: solid 7px hotpink;
-  height: 80vmax;
-  max-height: 80vh;
-  bottom: 1.1vh;
   display: inline-block;
   position: fixed;
+  border: solid 7px hotpink;
+  height: 80vh;
+  bottom: 6vh;
+  margin: 0;
 }
 
 #tetris1P,
-.sc1P {
-  right: 50vw;
+.scs1P {
+  right: 50%;
 }
 
 #tetris2P,
-.sc2P {
-  left: 50vw;
+.scs2P {
+  left: 50%;
 }
 
 .sc1P,
 .sc2P {
-  font-size: 5vh;
-  bottom: 81vh;
-  padding-left: 1vw;
-  padding-right: 1vw;
-  margin-bottom: 0;
+  font-size: 38px;
+  width: 280px;
+  padding-left: 12px;
+  top: 14vh;
+  margin: auto;
   position: fixed;
   border: solid 5px hotpink;
   background-color: rgb(255, 214, 237);
   color: hotpink;
 }
+
+.scs1P,
+.scs2P {
+  font-size: 18px;
+  width: 48.5vh;
+  height: 36px;
+  padding-left: 12px;
+  bottom: 86vh;
+  margin: auto;
+  position: fixed;
+  border: solid 5px hotpink;
+  background-color: rgb(255, 214, 237);
+  color: hotpink;
+  overflow: hidden;
+}
+
+.sc1P {
+  left: 100px;
+}
+
+.sc2P {
+  right: 100px;
+}
+
+@media (max-width: 1700px) {
+  .sc1P,
+  .sc2P {
+    display: none;
+  }
+}
+
+@media (min-width: 1700px) {
+  .scs1P,
+  .scs2P {
+    display: none;
+  }
+}
 </style>
+

@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="gamemodem" size="lg" hide-footer title="Select Gamemode">
+  <b-modal id="gamemodem" size="lg" hide-footer no-enforce-focus title="Select Gamemode">
     <div class="container">
       <b-button class="col align-self-center btn btn-primary" to="tetris">
         <p class="btnFont">1 Player</p>

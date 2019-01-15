@@ -11,7 +11,7 @@
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
       <pre> SFX: </pre>
       <label class="switch">
-        <input type="checkbox" checked>
+        <input type="checkbox" id="sfx" checked>
         <span class="slider"></span>
       </label>
     </div>
