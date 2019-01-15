@@ -15,10 +15,10 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // Tetris Database
-// const mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/TetrisDB', { useNewUrlParser: true, autoIndex: false })
-//   .then(() => console.log("Connected to TetrisDB"))
-//   .catch(err => console.log(err))
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/TetrisDB', { useNewUrlParser: true, autoIndex: false })
+  .then(() => console.log("Connected to TetrisDB"))
+  .catch(err => console.log(err))
 
 //var Users = require("./routes/Users")
 app.use('/user', user);

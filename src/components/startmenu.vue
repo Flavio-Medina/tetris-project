@@ -21,6 +21,11 @@ import gamemode from "./gamemode";
 import annoyingcat from "./annoyingcat";
 import btnregister from "./btnregister";
 import btnlogin from "./btnlogin";
+import EventBus from "./EventBus";
+
+EventBus.$on("logged-in", test => {
+  console.log(test);
+});
 
 export default {
   components: {
@@ -31,6 +36,24 @@ export default {
     btnregister,
     btnlogin,
     annoyingcat
+  },
+  data() {
+    return {
+      auth: "",
+      user: ""
+    };
+  },
+
+  methods: {
+    logout() {
+      localStorage.removeItem("usertoken");
+    }
+  },
+
+  mounted() {
+    EventBus.$on("logged-in", status => {
+      this.auth = status;
+    });
   }
 };
 </script>
