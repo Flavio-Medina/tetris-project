@@ -53,6 +53,7 @@ export default {
 }
 </script>
 
-<style>
-@import "../assets/css/modal.css";
+<style scoped>
+@import '../assets/css/reglog.css';
+@import '../assets/css/modal.css';
 </style>
