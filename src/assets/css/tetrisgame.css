@@ -19,3 +19,8 @@ canvas {
   background-color: rgb(255, 214, 237);
   color: hotpink;
 }
+
+#gameovermodal {
+  font-size: 64px;
+  text-align: center;
+}

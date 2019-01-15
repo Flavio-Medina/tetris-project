@@ -2,11 +2,35 @@
   <div>
     <div class="sc">
       Score:
-      <span id="score"></span>
+      <span class="score"></span>
       &nbsp; &nbsp; &nbsp;
       <span>Level: Highest</span>
     </div>
     <canvas id="tetris" width="240" height="400"/>
+    <b-modal
+      ref="go"
+      size="lg"
+      hide-footer
+      no-close-on-esc
+      no-close-on-backdrop
+      no-fade
+      hide-header-close
+      centered
+      title="Game Over"
+    >
+      <p id="gameovermodal">
+        Points:
+        <span class="score"></span>
+      </p>
+      <div class="container">
+        <b-button class="col align-self-center btn btn-primary" id="resta">
+          <p class="btnFont">Play again</p>
+        </b-button>
+        <b-button class="col align-self-center btn btn-primary" to="/">
+          <p class="btnFont">Back to Menu</p>
+        </b-button>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -16,6 +40,10 @@ module.exports = {
     const canvas = document.getElementById("tetris");
     const context = canvas.getContext("2d");
     const linesfx = new Audio("../../static/line.wav");
+    const gom = this.$refs.go;
+    document.getElementById("resta").onclick = function() {
+      restart();
+    };
 
     context.scale(20, 20);
 
@@ -117,29 +145,33 @@ module.exports = {
     }
 
     function softDrop() {
-      player.position.y++;
+      if (!collide(arena, player)) {
+        player.position.y++;
 
-      if (collide(arena, player)) {
+        if (collide(arena, player)) {
+          player.position.y--;
+          merge(arena, player);
+          reset();
+          clearRow();
+          updateScore();
+        }
+
+        dropCounter = 0;
+      }
+    }
+
+    function hardDrop() {
+      if (!collide(arena, player)) {
+        player.score += 2;
+        while (!collide(arena, player)) {
+          player.position.y++;
+        }
         player.position.y--;
         merge(arena, player);
         reset();
         clearRow();
         updateScore();
       }
-
-      dropCounter = 0;
-    }
-
-    function hardDrop() {
-      player.score += 2;
-      while (!collide(arena, player)) {
-        player.position.y++;
-      }
-      player.position.y--;
-      merge(arena, player);
-      reset();
-      clearRow();
-      updateScore();
     }
 
     document.addEventListener("keydown", event => {
@@ -171,26 +203,30 @@ module.exports = {
     );
 
     function move(offset) {
-      player.position.x += offset;
+      if (!collide(arena, player)) {
+        player.position.x += offset;
 
-      // Blöcke sollen beim Steuern nicht außerhalb des Spielfeldes gelangen
-      if (collide(arena, player)) {
-        player.position.x -= offset;
+        // Blöcke sollen beim Steuern nicht außerhalb des Spielfeldes gelangen
+        if (collide(arena, player)) {
+          player.position.x -= offset;
+        }
       }
     }
 
     function rotate(direction) {
-      const position = player.position.x;
-      let offset = 1;
-      rotateTetromino(player.matrix, direction);
-      // Bei Rotation am linken oder rechten Rand sollen die Blöcke nicht außerhalb des Spielfeldes gelangen
-      while (collide(arena, player)) {
-        player.position.x += offset;
-        offset = -(offset + (offset > 0 ? 1 : -1));
-        if (offset > player.matrix[0].length) {
-          rotateTetromino(player.matrix, -direction);
-          player.position.x = position;
-          return;
+      if (!collide(arena, player)) {
+        const position = player.position.x;
+        let offset = 1;
+        rotateTetromino(player.matrix, direction);
+        // Bei Rotation am linken oder rechten Rand sollen die Blöcke nicht außerhalb des Spielfeldes gelangen
+        while (collide(arena, player)) {
+          player.position.x += offset;
+          offset = -(offset + (offset > 0 ? 1 : -1));
+          if (offset > player.matrix[0].length) {
+            rotateTetromino(player.matrix, -direction);
+            player.position.x = position;
+            return;
+          }
         }
       }
     }
@@ -262,17 +298,23 @@ module.exports = {
       player.position.y = 0;
       player.position.x =
         ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
-
       if (collide(arena, player)) {
-        alert("Game over! Your score: " + player.score);
-        arena.forEach(row => row.fill(0));
-        player.score = 0;
-        updateScore();
+        gom.show();
       }
     }
 
+    function restart() {
+      gom.hide();
+      arena.forEach(row => row.fill(0));
+      player.score = 0;
+      updateScore();
+    }
+
     function updateScore() {
-      document.getElementById("score").innerText = player.score;
+      try {
+        document.getElementsByClassName("score")[0].innerText = player.score;
+        document.getElementsByClassName("score")[1].innerText = player.score;
+      } catch (error) {}
     }
 
     const colors = [
@@ -294,28 +336,5 @@ module.exports = {
 </script>
 
 <style>
-canvas {
-  border: solid 7px hotpink;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  height: 80vh;
-}
-
-.sc {
-  font-size: 40px;
-  width: 37vw;
-  position: relative;
-  text-align: center;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  border-style: solid;
-  border-color: hotpink;
-  background-color: rgb(255, 214, 237);
-  color: hotpink;
-}
+@import "../assets/css/tetrisgame.css";
 </style>
