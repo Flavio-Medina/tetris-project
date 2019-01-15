@@ -9,12 +9,17 @@ export default {
   name: "annoyingcat",
   methods: {
     randPos: function() {
+      try {
       this.$refs.catimg.style.top = Math.floor(Math.random() * 100) + "vh";
       this.$refs.catimg.style.left = Math.floor(Math.random() * 100) + "vw";
+      }
+      catch(error) {
+        clearInterval(this.$mount.ac);
+      }
     }
   },
   mounted: function() {
-    setInterval(this.randPos, 300);
+    let ac = setInterval(this.randPos, 300);
   }
 };
 </script>

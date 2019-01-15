@@ -2,11 +2,40 @@
   <div>
     <div class="sc">
       Score:
-      <span id="score"></span>
+      <span class="score"></span>
       &nbsp; &nbsp; &nbsp;
-      <span>Level: <span id="level"></span> </span>
+      <span>
+        Level:
+        <span class="level"></span>
+      </span>
     </div>
     <canvas id="tetris" width="240" height="400"/>
+    <b-modal
+      ref="go"
+      size="lg"
+      hide-footer
+      no-close-on-esc
+      no-close-on-backdrop
+      no-fade
+      hide-header-close
+      centered
+      title="Game Over"
+    >
+      <p id="gameovermodal">
+        Points:
+        <span class="score"></span>
+        <br>Level:
+        <span class="level"></span>
+      </p>
+      <div class="container">
+        <b-button class="col align-self-center btn btn-primary" id="resta">
+          <p class="btnFont">Play again</p>
+        </b-button>
+        <b-button class="col align-self-center btn btn-primary" to="/">
+          <p class="btnFont">Back to Menu</p>
+        </b-button>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -16,6 +45,10 @@ module.exports = {
     const canvas = document.getElementById("tetris");
     const context = canvas.getContext("2d");
     const linesfx = new Audio("../../static/line.wav");
+    const gom = this.$refs.go;
+    document.getElementById("resta").onclick = function() {
+      restart();
+    };
 
     context.scale(20, 20);
 
@@ -43,7 +76,7 @@ module.exports = {
       context.fillStyle = "rgb(255, 192, 227)";
       context.fillRect(0, 0, canvas.width, canvas.height);
 
-      drawMatrix(arena, {x: 0, y: 0});
+      drawMatrix(arena, { x: 0, y: 0 });
       drawMatrix(player.matrix, player.position);
     }
 
@@ -53,14 +86,14 @@ module.exports = {
 
       for (let x = 0; x <= 12; x++) {
         context.beginPath();
-        context.moveTo( x, 0);
-        context.lineTo( x, 20);
+        context.moveTo(x, 0);
+        context.lineTo(x, 20);
         context.stroke();
       }
       for (let y = 0; y <= 20; y++) {
         context.beginPath();
-        context.moveTo( 0, y);
-        context.lineTo( 12, y);
+        context.moveTo(0, y);
+        context.lineTo(12, y);
         context.stroke();
       }
     }
@@ -104,20 +137,16 @@ module.exports = {
       if (player.score >= 40 && player.score <= 79) {
         player.level = 2;
         dropInterval = 750;
-      }
-      else if (player.score >= 80 && player.score <= 119) {
+      } else if (player.score >= 80 && player.score <= 119) {
         player.level = 3;
         dropInterval = 500;
-      }
-      else if (player.score >= 120 && player.score <= 159) {
+      } else if (player.score >= 120 && player.score <= 159) {
         player.level = 4;
         dropInterval = 250;
-      }
-      else if (player.score >= 160 && player.score <= 199) {
+      } else if (player.score >= 160 && player.score <= 199) {
         player.level = 5;
         dropInterval = 125;
-      }
-      else if (player.score >= 200) {
+      } else if (player.score >= 200) {
         player.level = 6;
         dropInterval = 62.5;
       }
@@ -136,31 +165,34 @@ module.exports = {
       window.requestAnimationFrame(updateGame);
     }
 
-
     function softDrop() {
-      player.position.y++;
+      if (!collide(arena, player)) {
+        player.position.y++;
 
-      if (collide(arena, player)) {
+        if (collide(arena, player)) {
+          player.position.y--;
+          merge(arena, player);
+          reset();
+          clearRow();
+          updateScoreAndLevel();
+        }
+
+        dropCounter = 0;
+      }
+    }
+
+    function hardDrop() {
+      if (!collide(arena, player)) {
+        player.score += 2;
+        while (!collide(arena, player)) {
+          player.position.y++;
+        }
         player.position.y--;
         merge(arena, player);
         reset();
         clearRow();
         updateScoreAndLevel();
       }
-
-      dropCounter = 0;
-    }
-
-    function hardDrop() {
-      player.score += 2;
-      while (!collide(arena, player)) {
-        player.position.y++;
-      }
-      player.position.y--;
-      merge(arena, player);
-      reset();
-      clearRow();
-      updateScoreAndLevel();
     }
 
     document.addEventListener("keydown", event => {
@@ -192,26 +224,30 @@ module.exports = {
     );
 
     function move(offset) {
-      player.position.x += offset;
+      if (!collide(arena, player)) {
+        player.position.x += offset;
 
-      // Blöcke sollen beim Steuern nicht außerhalb des Spielfeldes gelangen
-      if (collide(arena, player)) {
-        player.position.x -= offset;
+        // Blöcke sollen beim Steuern nicht außerhalb des Spielfeldes gelangen
+        if (collide(arena, player)) {
+          player.position.x -= offset;
+        }
       }
     }
 
     function rotate(direction) {
-      const position = player.position.x;
-      let offset = 1;
-      rotateTetromino(player.matrix, direction);
-      // Bei Rotation am linken oder rechten Rand sollen die Blöcke nicht außerhalb des Spielfeldes gelangen
-      while (collide(arena, player)) {
-        player.position.x += offset;
-        offset = -(offset + (offset > 0 ? 1 : -1));
-        if (offset > player.matrix[0].length) {
-          rotateTetromino(player.matrix, -direction);
-          player.position.x = position;
-          return;
+      if (!collide(arena, player)) {
+        const position = player.position.x;
+        let offset = 1;
+        rotateTetromino(player.matrix, direction);
+        // Bei Rotation am linken oder rechten Rand sollen die Blöcke nicht außerhalb des Spielfeldes gelangen
+        while (collide(arena, player)) {
+          player.position.x += offset;
+          offset = -(offset + (offset > 0 ? 1 : -1));
+          if (offset > player.matrix[0].length) {
+            rotateTetromino(player.matrix, -direction);
+            player.position.x = position;
+            return;
+          }
         }
       }
     }
@@ -285,18 +321,26 @@ module.exports = {
         ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
 
       if (collide(arena, player)) {
-        alert("Game over! Your score: " + player.score);
-        arena.forEach(row => row.fill(0));
-        dropInterval = 1000;
-        player.score = 0;
-        player.level = 1;
-        updateScoreAndLevel();
+        gom.show();
       }
     }
 
+    function restart() {
+      gom.hide();
+      arena.forEach(row => row.fill(0));
+      dropInterval = 1000;
+      player.score = 0;
+      player.level = 1;
+      updateScoreAndLevel();
+    }
+
     function updateScoreAndLevel() {
-      document.getElementById("score").innerText = player.score;
-      document.getElementById("level").innerText = player.level;
+      try {
+        document.getElementsByClassName("score")[0].innerText = player.score;
+        document.getElementsByClassName("score")[1].innerText = player.score;
+        document.getElementsByClassName("level")[0].innerText = player.level;
+        document.getElementsByClassName("level")[1].innerText = player.level;
+      } catch (error) {}
     }
 
     const colors = [

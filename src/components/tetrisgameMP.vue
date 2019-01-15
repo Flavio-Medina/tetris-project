@@ -4,7 +4,8 @@
       1P Score:
       <span id="score1P"></span>
       &nbsp; &nbsp; &nbsp;
-      <span>Level:
+      <span>
+        Level:
         <span id="level1P"></span>
       </span>
     </div>
@@ -13,7 +14,8 @@
       2P Score:
       <span id="score2P"></span>
       &nbsp; &nbsp; &nbsp;
-      <span>Level:
+      <span>
+        Level:
         <span id="level2P"></span>
       </span>
     </div>
@@ -187,29 +189,33 @@ module.exports = {
     }
 
     function softDrop(arena, player) {
-      player.position.y++;
+      if (!collide(arena, player)) {
+        player.position.y++;
 
-      if (collide(arena, player)) {
+        if (collide(arena, player)) {
+          player.position.y--;
+          merge(arena, player);
+          reset(arena, player);
+          clearRow(arena, player);
+          updateScoreAndLevel(player);
+        }
+
+        player.dropCounter = 0;
+      }
+    }
+
+    function hardDrop(arena, player) {
+      if (!collide(arena, player)) {
+        player.score += 2;
+        while (!collide(arena, player)) {
+          player.position.y++;
+        }
         player.position.y--;
         merge(arena, player);
         reset(arena, player);
         clearRow(arena, player);
         updateScoreAndLevel(player);
       }
-
-      player.dropCounter = 0;
-    }
-
-    function hardDrop(arena, player) {
-      player.score += 2;
-      while (!collide(arena, player)) {
-        player.position.y++;
-      }
-      player.position.y--;
-      merge(arena, player);
-      reset(arena, player);
-      clearRow(arena, player);
-      updateScoreAndLevel(player);
     }
 
     document.addEventListener("keydown", event => {
@@ -269,26 +275,30 @@ module.exports = {
     );
 
     function move(offset, arena, player) {
-      player.position.x += offset;
+      if (!collide(arena, player)) {
+        player.position.x += offset;
 
-      // Blöcke sollen beim Steuern nicht außerhalb des Spielfeldes gelangen
-      if (collide(arena, player)) {
-        player.position.x -= offset;
+        // Blöcke sollen beim Steuern nicht außerhalb des Spielfeldes gelangen
+        if (collide(arena, player)) {
+          player.position.x -= offset;
+        }
       }
     }
 
     function rotate(direction, arena, player) {
-      const position = player.position.x;
-      let offset = 1;
-      rotateTetromino(player.matrix, direction);
-      // Bei Rotation am linken oder rechten Rand sollen die Blöcke nicht außerhalb des Spielfeldes gelangen
-      while (collide(arena, player)) {
-        player.position.x += offset;
-        offset = -(offset + (offset > 0 ? 1 : -1));
-        if (offset > player.matrix[0].length) {
-          rotateTetromino(player.matrix, -direction);
-          player.position.x = position;
-          return;
+      if (!collide(arena, player)) {
+        const position = player.position.x;
+        let offset = 1;
+        rotateTetromino(player.matrix, direction);
+        // Bei Rotation am linken oder rechten Rand sollen die Blöcke nicht außerhalb des Spielfeldes gelangen
+        while (collide(arena, player)) {
+          player.position.x += offset;
+          offset = -(offset + (offset > 0 ? 1 : -1));
+          if (offset > player.matrix[0].length) {
+            rotateTetromino(player.matrix, -direction);
+            player.position.x = position;
+            return;
+          }
         }
       }
     }
@@ -371,13 +381,15 @@ module.exports = {
     }
 
     function updateScoreAndLevel(player) {
-      if (player === player1) {
-        document.getElementById("score1P").innerText = player.score;
-        document.getElementById("level1P").innerText = player.level;
-      } else if (player === player2) {
-        document.getElementById("score2P").innerText = player.score;
-        document.getElementById("level2P").innerText = player.level;
-      }
+      try {
+        if (player === player1) {
+          document.getElementById("score1P").innerText = player.score;
+          document.getElementById("level1P").innerText = player.level;
+        } else if (player === player2) {
+          document.getElementById("score2P").innerText = player.score;
+          document.getElementById("level2P").innerText = player.level;
+        }
+      } catch (error) {}
     }
 
     const colors = [
