@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-btn class="btn btn-primary" to="login">
+    <b-btn class="btn btn-primary" to="/user/login">
       <p class="btnFont">Login</p>
     </b-btn>
   </div>

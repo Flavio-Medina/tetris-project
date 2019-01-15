@@ -12,6 +12,7 @@ import login from '@/components/login'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -39,12 +40,12 @@ export default new Router({
       component: tetristroll
     },
     {
-      path: '/register',
+      path: '/user/register',
       name: 'register',
       component: register
     },
     {
-      path: '/login',
+      path: '/user/login',
       name: 'login',
       component: login
     },

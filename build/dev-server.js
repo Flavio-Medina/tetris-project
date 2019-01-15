@@ -1,16 +1,34 @@
-require('./check-versions')()
-
-var config = require('../config')
-if (!process.env.NODE_ENV) {
-  process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
-}
-
 var opn = require('opn')
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
+var cors = require("cors")
+var bodyParser = require("body-parser")
+const user = require('./../auth/routes/route')
+require('./check-versions')()
+var app = express()
+
+app.use(bodyParser.json())
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// Tetris Database
+// const mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/TetrisDB', { useNewUrlParser: true, autoIndex: false })
+//   .then(() => console.log("Connected to TetrisDB"))
+//   .catch(err => console.log(err))
+
+//var Users = require("./routes/Users")
+app.use('/user', user);
+
+
+
+var config = require('../config')
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
+}
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -20,7 +38,6 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 // https://github.com/chimurai/http-proxy-middleware
 var proxyTable = config.dev.proxyTable
 
-var app = express()
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {

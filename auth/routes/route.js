@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
+// const cors = require("cors");
+// const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const User = require('../models/model');
 const jwt = require('jsonwebtoken');
@@ -52,7 +53,7 @@ router.post('/login', function (req, res) {
                             expiresIn: 1800
                         });
                     return res.status(200).json({
-                        success: 'Welcome to the JWT Auth',
+                        success: 'Welcome to the secret path',
                         token: JWTToken
                     });
                 }
