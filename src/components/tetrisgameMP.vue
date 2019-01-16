@@ -490,11 +490,13 @@ canvas {
 #tetris1P,
 .scs1P {
   right: 50%;
+  left: auto;
 }
 
 #tetris2P,
 .scs2P {
   left: 50%;
+  right: auto;
 }
 
 .sc1P,
