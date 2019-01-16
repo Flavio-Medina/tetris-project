@@ -198,20 +198,6 @@ module.exports = {
       }
     }
 
-    document.addEventListener("keydown", event => {
-      if (event.key === "p") {
-        move(-1);
-      } else if (event.key === "C") {
-        move(1);
-      } else if (event.key === "q") {
-        softDrop();
-      } else if (event.key === "L") {
-        rotate(1);
-      } else if (event.key === "4") {
-        hardDrop();
-      }
-    });
-
     window.addEventListener(
       "keydown",
       function(e) {

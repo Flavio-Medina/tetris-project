@@ -5,12 +5,19 @@
       <b-navbar-brand to="/">
         <img src="/static/logo.png" alt="Tetris" id="gmlogo">
       </b-navbar-brand>
-      <gamemodegame/>
-      <highscoregame/>
-      <howtoplaygame/>
+      <p v-b-modal.gamemodem class="gm">Game Mode</p>
+      <gamemodemodal/>
+      <p v-b-modal.hs class="gm">High Score</p>
+      <highscoremodal/>
+      <p v-b-modal.h2p class="gm">How to Play</p>
+      <howtoplaymodal/>
       <b-navbar-nav class="ml-auto">
-        <registergame/>
-        <logingame/>
+        <b-navbar-brand to="user/register">
+          <p class="gm">Register</p>
+        </b-navbar-brand>
+        <b-navbar-brand to="user/login">
+          <p class="gm" to="login">Login</p>
+        </b-navbar-brand>
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -19,21 +26,17 @@
 <script>
 import sounds from "./sounds";
 import startmenu from "./startmenu";
-import gamemodegame from "./gamemodegame";
-import highscoregame from "./highscoregame";
-import howtoplaygame from "./howtoplaygame";
-import registergame from "./registergame";
-import logingame from "./logingame";
+import gamemodemodal from "./gamemodemodal";
+import highscoremodal from "./highscoremodal";
+import howtoplaymodal from "./howtoplaymodal";
 export default {
   name: "gamemenu",
   components: {
     sounds,
     startmenu,
-    gamemodegame,
-    highscoregame,
-    howtoplaygame,
-    registergame,
-    logingame
+    gamemodemodal,
+    highscoremodal,
+    howtoplaymodal
   }
 };
 </script>

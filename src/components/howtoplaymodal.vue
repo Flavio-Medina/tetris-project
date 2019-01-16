@@ -1,7 +1,7 @@
 <template>
   <b-modal id="h2p" size="lg" hide-footer no-enforce-focus title="How to Play">
     <p>
-      Tetris is played on a 10 by 20 grid called the Matrix.
+      Tetris is played on a 12 by 20 grid called the Matrix.
       Tetriminos in 7 different shapes fall from the top of the Matrix and come to rest at the bottom.
       Only one Tetrimino falls at a time.
       At first the Tetriminos fall rather slowly; as the game progresses they will fall faster and faster.
@@ -30,10 +30,12 @@
       <br>Up: Rotate
       <br>Down: Soft Drop
       <br>RightCtrl: Hard Drop
+      <br>
+      <br>Recommended Resolution: 1920x1080 (Fullscreen)
     </p>
   </b-modal>
 </template>
 
 <style>
-@import '../assets/css/modal.css';
+@import "../assets/css/modal.css";
 </style>

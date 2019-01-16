@@ -20,6 +20,10 @@
   </b-modal>
 </template>
 
-<style>
-@import '../assets/css/modal.css';
+<style scoped>
+@import "../assets/css/modal.css";
+
+.btn-primary {
+  margin-bottom: 0;
+}
 </style>

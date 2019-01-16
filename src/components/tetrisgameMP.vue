@@ -278,34 +278,6 @@ module.exports = {
       }
     });
 
-    window.addEventListener(
-      "keydown",
-      function(e) {
-        if (
-          [
-            "a",
-            "d",
-            "s",
-            "w",
-            "f",
-            "A",
-            "D",
-            "S",
-            "W",
-            "F",
-            "ArrowLeft",
-            "ArrowRight",
-            "ArrowDown",
-            "ArrowUp",
-            "CTRL"
-          ].indexOf(e.key) > -1
-        ) {
-          e.preventDefault();
-        }
-      },
-      false
-    );
-
     function move(offset, arena, player) {
       if (!collide(arena, player)) {
         player.position.x += offset;

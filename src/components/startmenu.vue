@@ -5,19 +5,28 @@
     <btnlogin/>
     <sounds/>
     <div class="container">
-      <gamemode/>
-      <highscore/>
-      <howtoplay/>
+      <b-btn v-b-modal.gamemodem class="col align-self-center btn btn-primary btnFont">
+        <p class="btnFont">Start Game</p>
+      </b-btn>
+      <gamemodemodal/>
+      <b-btn v-b-modal.hs class="col align-self-center btn btn-primary">
+        <p class="btnFont">High Score</p>
+      </b-btn>
+      <highscoremodal/>
+      <b-btn v-b-modal.h2p class="col align-self-center btn btn-primary btnFont">
+        <p class="btnFont">How to Play</p>
+      </b-btn>
+      <howtoplaymodal/>
     </div>
     <annoyingcat/>
   </div>
 </template>
 
 <script>
-import howtoplay from "./howtoplay";
-import highscore from "./highscore";
+import howtoplaymodal from "./howtoplaymodal";
+import highscoremodal from "./highscoremodal";
 import sounds from "./sounds";
-import gamemode from "./gamemode";
+import gamemodemodal from "./gamemodemodal";
 import annoyingcat from "./annoyingcat";
 import btnregister from "./btnregister";
 import btnlogin from "./btnlogin";
@@ -29,10 +38,10 @@ EventBus.$on("logged-in", test => {
 
 export default {
   components: {
-    howtoplay,
-    highscore,
+    howtoplaymodal,
+    highscoremodal,
     sounds,
-    gamemode,
+    gamemodemodal,
     btnregister,
     btnlogin,
     annoyingcat
@@ -59,6 +68,8 @@ export default {
 </script>
 
 <style>
+@import "../assets/css/modal.css";
+
 body {
   background-image: url("/static/background.jpg");
   background-repeat: no-repeat;
