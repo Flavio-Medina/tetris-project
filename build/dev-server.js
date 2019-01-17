@@ -74,7 +74,7 @@ devMiddleware.waitUntilValid(() => {
   if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
     // Zeile opn(uri) "unkommentieren" damit sich der Browser automatisch öffnet nach "npm start".
     // Muss aber für Docker so bleiben bzw. ganz entfernt werden!
-    opn(uri);
+    // opn(uri);
   }
   _resolve();
 });

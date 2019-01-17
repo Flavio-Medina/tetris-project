@@ -15,29 +15,32 @@ router.post('/register', (req, res) => {
         email: req.body.email,
         password: req.body.password,
     }
-
-    User.findOne({
-        username: req.body.username
-    })
-        .then(user => {
-            if (!user) {
-                bcrypt.hash(req.body.password, 10, (err, hash) => {
-                    userData.password = hash
-                    User.create(userData)
-                        .then(user => {
-                            res.json({ status: user.username + ' has been registered. Welcome to Tetris!' })
-                        })
-                        .catch(err => {
-                            res.send('error: ' + err)
-                        })
-                })
-            } else {
-                res.json({ error: 'User already exists. Please choose another username' })
-            }
+    if (!req.body.password) {
+        res.json({ error: 'Password is mandatory!' })
+    } else {
+        User.findOne({
+            username: req.body.username
         })
-        .catch(err => {
-            res.send('error: ' + err)
-        })
+            .then(user => {
+                if (!user) {
+                    bcrypt.hash(req.body.password, 10, (err, hash) => {
+                        userData.password = hash
+                        User.create(userData)
+                            .then(user => {
+                                res.json({ status: user.username + ' has been registered. Welcome to Tetris!', username: user.username })
+                            })
+                            .catch(err => {
+                                res.send('error: ' + err)
+                            })
+                    })
+                } else {
+                    res.json({ error: 'User already exists. Please choose another username' })
+                }
+            })
+            .catch(err => {
+                res.send('error: ' + err)
+            })
+    }
 })
 
 router.post('/login', (req, res) => {
