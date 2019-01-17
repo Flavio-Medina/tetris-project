@@ -40,9 +40,9 @@ export default {
       }).then(res => {
         localStorage.setItem('usertoken', res.data.token);
         if (res.data.token){
-          console.log('I got something')
+          console.log('Success')
         } else {
-          console.log('I aint got shit nigga')
+          console.log('Failed')
         }
         this.username = ''
         this.password = ''

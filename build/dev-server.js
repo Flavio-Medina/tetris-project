@@ -70,8 +70,11 @@ var readyPromise = new Promise(resolve => {
 console.log('Starting server');
 devMiddleware.waitUntilValid(() => {
   console.log('Listening at ' + uri + '\n');
+  console.log('DOCKER: Listening at http://localhost:80');
   if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-    opn(uri).catch(err);
+    // Zeile opn(uri) "unkommentieren" damit sich der Browser automatisch öffnet nach "npm start".
+    // Muss aber für Docker so bleiben bzw. ganz entfernt werden!
+    opn(uri);
   }
   _resolve();
 });
