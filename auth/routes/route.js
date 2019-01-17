@@ -2,8 +2,8 @@ const express = require("express")
 const router = express.Router()
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt")
-const User = require('../models/model')
+const bcrypt = require("bcryptjs")
+const User = require('../../config/database/models/modelUser');
 
 router.use(cors())
 

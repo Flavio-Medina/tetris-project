@@ -6,7 +6,7 @@
                     <h1 class="h3 mb-3 font-weight-normal">Login</h1>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" v-model="username" class="form-control" name="email" placeholder="Enter your username">
+                        <input type="text" v-model="username" class="form-control" name="username" placeholder="Enter your username">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -27,7 +27,7 @@ import EventBus from './EventBus'
 export default {
   data () {
     return {
-      email: '',
+      username: '',
       password: ''
     }
   },
@@ -38,7 +38,12 @@ export default {
         username: this.username,
         password: this.password
       }).then(res => {
-        localStorage.setItem('usertoken', res.data)
+        localStorage.setItem('usertoken', res.data.token);
+        if (res.data.token){
+          console.log('I got something')
+        } else {
+          console.log('I aint got shit nigga')
+        }
         this.username = ''
         this.password = ''
         router.push({ name: 'startmenu' })

@@ -14,7 +14,7 @@
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" v-model="password" class="form-control" name="password" placeholder="Please enter Password">
+            <input type="password" v-model="password" class="form-control" name="password" placeholder="Please choose your password">
           </div>
           <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </form>
@@ -43,7 +43,8 @@ export default {
         email: this.email,
         password: this.password
       }).then(res => {
-        console.log('Registration successful')
+        console.log('Registration successful');
+        
         router.push({ name: 'login' })
       }).catch(err => {
         console.log(err)
