@@ -4,6 +4,9 @@
       <div class="col-md-6 mt-5 mx-auto">
         <form v-on:submit.prevent="login">
           <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          <div>
+            <p>You need to login in order to post and save your highscores</p>
+          </div>
           <div class="form-group">
             <label for="username">Username</label>
             <input
@@ -61,6 +64,7 @@ export default {
     login() {
       if (!this.username) this.alertUsername = true;
       if (!this.password) this.alertPassword = true;
+      
       axios
         .post("/user/login", {
           username: this.username,

@@ -4,6 +4,7 @@
       <div class="col-md-6 mt-5 mx-auto">
         <form v-on:submit.prevent="register">
           <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+          <p>If you want to post your highscores, you have to register and login with your registered account</p>
           <div class="form-group">
             <label for="username">Username</label>
             <input
