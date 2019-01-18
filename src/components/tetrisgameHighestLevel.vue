@@ -177,6 +177,21 @@ module.exports = {
       }
     }
 
+    document.addEventListener("keydown", event => {
+      if (event.key === "ArrowLeft") {
+        move(-1);
+      } else if (event.key === "ArrowRight") {
+        move(1);
+      } else if (event.key === "ArrowDown") {
+        softDrop();
+      } else if (event.key === "ArrowUp") {
+        rotate(1);
+      } else if (event.key === " ") {
+        hardDrop();
+      }
+    });
+
+
     window.addEventListener(
       "keydown",
       function(e) {
