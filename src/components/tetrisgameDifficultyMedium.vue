@@ -345,6 +345,6 @@ module.exports = {
 };
 </script>
 
-<style>
+<style scoped>
 @import "../assets/css/tetrisgame.css";
 </style>
