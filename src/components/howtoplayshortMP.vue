@@ -11,7 +11,7 @@
       <br>Left/Right: Move Left/Right
       <br>Up: Rotate
       <br>Down: Soft Drop
-      <br>RightCtrl: Hard Drop
+      <br>RightShift: Hard Drop
       <br>
     </p>
   </div>

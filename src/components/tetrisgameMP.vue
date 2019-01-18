@@ -273,7 +273,7 @@ module.exports = {
         softDrop(arena2P, player2);
       } else if (event.key === "ArrowUp") {
         rotate(1, arena2P, player2);
-      } else if (event.location === 2 && event.ctrlKey) {
+      } else if (event.location === 2 && event.shiftKey) {
         hardDrop(arena2P, player2);
       }
     });
