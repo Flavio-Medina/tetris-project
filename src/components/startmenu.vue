@@ -1,8 +1,20 @@
 <template>
   <div>
     <img src="/static/logo.png" alt="Tetris" id="mlogo">
-    <btnregister/>
-    <btnlogin/>
+    <div v-if="check"> <!-- Hier bitte check einfügen, ob man eingeloggt ist. Soll angezeigt werden, wenn man eingeloggt ist. -->
+      <p class="user">Logged in as <span ref="username"/></p> <!-- Bitte testen: Username soll angezeigt werden. -->
+    <b-btn class="btn btn-primary btnlog" id="btnlogout" v-on:click="logout">
+      <p class="btnreglogfont">Log out</p>
+    </b-btn>
+    </div>
+    <div v-else> <!-- Bitte testen: Soll automatisch angezeigt werden, wenn man nicht eingeloggt ist oder ausloggt. -->
+      <b-btn class="btn btn-primary btnreg" to="/user/register">
+        <p class="btnreglogfont">Register</p>
+      </b-btn>
+      <b-btn class="btn btn-primary btnlog" to="/user/login">
+        <p class="btnreglogfont">Login</p>
+      </b-btn>
+    </div>
     <sounds/>
     <div class="container">
       <b-btn v-b-modal.gamemodem class="col align-self-center btn btn-primary btnFont">
@@ -28,8 +40,6 @@ import highscoremodal from "./highscoremodal";
 import sounds from "./sounds";
 import gamemodemodal from "./gamemodemodal";
 import annoyingcat from "./annoyingcat";
-import btnregister from "./btnregister";
-import btnlogin from "./btnlogin";
 import EventBus from "./EventBus";
 
 EventBus.$on("logged-in", test => {
@@ -42,8 +52,6 @@ export default {
     highscoremodal,
     sounds,
     gamemodemodal,
-    btnregister,
-    btnlogin,
     annoyingcat
   },
   data() {
@@ -63,12 +71,14 @@ export default {
     EventBus.$on("logged-in", status => {
       this.auth = status;
     });
+    this.$refs.username.innerText = this.user; // Bitte testen
   }
 };
 </script>
 
 <style>
 @import "../assets/css/modal.css";
+@import "../assets/css/btnreglog.css";
 
 body {
   background-image: url("/static/background.jpg");
