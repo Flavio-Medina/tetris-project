@@ -3,11 +3,11 @@
     <audio src="./static/cat.mp3" ref="sfx" type="audio/mpeg" autoplay loop></audio>
     <canvas id="tetris" width="240" height="400"/>
     <p class="sc">
-      Score:
-      <span class="score"></span>
+      Score: 
+      <span class="score"></span>*0
       <br>Level:
-      <span class="level"></span>
-      <br>Lines:
+      <span class="level"></span>?
+      <br>Lines: -
       <span class="lines"></span>
     </p>
     <b-modal
@@ -198,15 +198,19 @@ module.exports = {
       }
     }
 
-    window.addEventListener(
-      "keydown",
-      function(e) {
-        if (["p", "C", "q", "L", "4"].indexOf(e.key) > -1) {
-          e.preventDefault();
-        }
-      },
-      false
-    );
+    document.addEventListener("keydown", event => {
+      if (event.key === "p") {
+        move(-1);
+      } else if (event.key === "C") {
+        move(1);
+      } else if (event.key === "q") {
+        softDrop();
+      } else if (event.key === "L") {
+        rotate(1);
+      } else if (event.key === "4") {
+        hardDrop();
+      }
+    });
 
     function move(offset) {
       if (!collide(arena, player)) {
