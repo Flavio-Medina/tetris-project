@@ -4,7 +4,7 @@
     <p class="sc">
       Score:
       <span class="score"></span>
-      <br>Difficulty: Hard
+      <br>Difficulty: Medium
       <br>Lines:
       <span class="lines"></span>
     </p>
@@ -129,7 +129,7 @@ module.exports = {
     }
 
     let dropCounter = 0;
-    let dropInterval = 62.5;
+    let dropInterval = 500;
 
     let lastTime = 0;
 

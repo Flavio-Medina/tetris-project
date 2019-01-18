@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import startmenu from '@/components/startmenu'
 import tetris from '@/components/tetris'
 import tetrisHighestLevel from '@/components/tetrisHighestLevel'
+import tetrisDifficultyMedium from '@/components/tetrisDifficultyMedium'
 import tetrisinv from '@/components/tetrisinv'
 import tetrisMP from '@/components/tetrisMP'
 import tetristroll from '@/components/tetristroll'
@@ -53,6 +54,11 @@ export default new Router({
       path: '/tetrisHighestLevel',
       name: 'tetrisHighestLevel',
       component: tetrisHighestLevel
+    },
+    {
+      path: '/tetrisDifficultyMedium',
+      name: 'tetrisDifficultyMedium',
+      component: tetrisDifficultyMedium
     }
   ]
 })

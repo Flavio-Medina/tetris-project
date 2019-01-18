@@ -8,7 +8,10 @@
         <p class="btnFont">2 Players</p>
       </b-button>
       <b-button class="col align-self-center btn btn-primary" to="tetrisHighestLevel">
-        <p class="btnFont">Highest level</p>
+        <p class="btnFont">Difficulty: Hard</p>
+      </b-button>
+      <b-button class="col align-self-center btn btn-primary" to="tetrisDifficultyMedium">
+        <p class="btnFont">Difficulty: Medium</p>
       </b-button>
       <b-button class="col align-self-center btn btn-primary" to="tetrisinv">
         <p class="btnFont">Invisible</p>
