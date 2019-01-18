@@ -2,13 +2,13 @@
 Tetris - WT Project  
 
 TODO:  
-~~bcrypt mit bcryptjs ersetzen!~~ erledigt! -Flavio
+~~bcrypt mit bcryptjs ersetzen!~~ fertig -Flavio
 
-Account (langsam aber sicher..) -Flavio
+~~Account~~ fertig -Flavio
 
-Highscore (soon) -Flavio
+Highscore
 
-Docker (fast 100%ig funktionsfähig) -Flavio
+~~Docker~~ fertig -Flavio
 
 Next Piece  
 
@@ -16,9 +16,10 @@ Balancing
 
 Hold Piece  
 
+----------
 
 Flavio-Medina = Flavio Medina
 
-Phil71 = Philip <Hier Nachname einfügen>
+Phil71 = Philipp Prica
 
 Socrer = Benno Vuong
