@@ -3,12 +3,12 @@
     <audio src="./static/cat.mp3" ref="sfx" type="audio/mpeg" autoplay loop></audio>
     <canvas id="tetris" width="240" height="400"/>
     <p class="sc">
-      Score: 
+      Score:
       <span class="score"></span>*0
-      <br>Level:
-      <span class="level"></span>?
       <br>Lines: -
       <span class="lines"></span>
+      <br>Level:
+      <span class="level"></span>?
     </p>
     <b-modal
       ref="go"
@@ -23,8 +23,8 @@
       title="Game Over"
     >
       <p id="gameovermodal">Points: -123456789abc
-        <br>Level: Noob
         <br>Lines: Not enough!
+        <br>Level: Noob
       </p>
       <div class="container">
         <b-button class="col align-self-center btn btn-primary" id="resta">

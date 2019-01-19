@@ -30,8 +30,6 @@
       <br>Up: Rotate
       <br>Down: Soft Drop
       <br>RightShift: Hard Drop
-      <br>
-      <br>Recommended Resolution: 1920x1080 (Fullscreen)
     </p>
   </b-modal>
 </template>

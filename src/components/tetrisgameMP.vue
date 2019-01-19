@@ -5,10 +5,10 @@
     <p class="sc1P">
       Score:
       <span class="score1P"></span>
-      <br>Level:
-      <span class="level1P"></span>
       <br>Lines:
       <span class="lines1P"></span>
+      <br>Level:
+      <span class="level1P"></span>
       <br>Game Over:
       <span class="gameover1P"></span>
     </p>
@@ -16,10 +16,10 @@
     <p class="sc2P">
       Score:
       <span class="score2P"></span>
-      <br>Level:
-      <span class="level2P"></span>
       <br>Lines:
       <span class="lines2P"></span>
+      <br>Level:
+      <span class="level2P"></span>
       <br>Game Over:
       <span class="gameover2P"></span>
     </p>
@@ -27,11 +27,11 @@
       Score:
       <span class="score1P"></span>
       &nbsp; &nbsp;
-      Level:
-      <span class="level1P"></span>
-      &nbsp; &nbsp;
       Lines:
       <span class="lines1P"></span>
+      &nbsp; &nbsp;
+      Level:
+      <span class="level1P"></span>
       &nbsp; &nbsp;
       Game Over:
       <span class="gameover1P"></span>
@@ -41,11 +41,11 @@
       Score:
       <span class="score2P"></span>
       &nbsp; &nbsp;
-      Level:
-      <span class="level2P"></span>
-      &nbsp; &nbsp;
       Lines:
       <span class="lines2P"></span>
+      &nbsp; &nbsp;
+      Level:
+      <span class="level2P"></span>
       &nbsp; &nbsp;
       Game Over:
       <span class="gameover2P"></span>

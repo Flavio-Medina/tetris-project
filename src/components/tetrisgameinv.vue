@@ -1,13 +1,14 @@
 <template>
   <div>
     <canvas id="tetris" width="240" height="400"/>
+    <canvas id="next" width="60" height="80"/>
     <p class="sc">
       Score:
       <span class="score"></span>
-      <br>Level:
-      <span class="level"></span>
       <br>Lines:
       <span class="lines"></span>
+      <br>Level:
+      <span class="level"></span>
     </p>
     <b-modal
       ref="go"
@@ -24,6 +25,8 @@
       <p id="gameovermodal">
         Points:
         <span class="score"></span>
+        <br>Lines:
+        <span class="lines"></span>
         <br>Level:
         <span class="level"></span>
       </p>
@@ -49,6 +52,10 @@ module.exports = {
     document.getElementById("resta").onclick = function() {
       restart();
     };
+    const canvasNext = document.getElementById("next");
+    const contextNext = canvasNext.getContext("2d");
+    contextNext.scale(20, 20);
+    const nextField = createMatrix(3, 4);
 
     context.scale(20, 20);
 
@@ -78,7 +85,8 @@ module.exports = {
       context.fillRect(0, 0, canvas.width, canvas.height);
 
       drawMatrixInv(arena, { x: 0, y: 0 });
-      drawMatrix(player.matrix, player.position);
+      drawMatrix(context, player.matrix, player.position);
+      drawLines();
     }
 
     function drawMatrixInv(matrix, offset) {
@@ -110,16 +118,15 @@ module.exports = {
       }
     }
 
-    function drawMatrix(matrix, offset) {
+    function drawMatrix(con, matrix, offset) {
       matrix.forEach((row, y) => {
         row.forEach((value, x) => {
           if (value !== 0) {
-            context.fillStyle = colors[value];
-            context.fillRect(x + offset.x, y + offset.y, 1, 1);
+            con.fillStyle = colors[value];
+            con.fillRect(x + offset.x, y + offset.y, 1, 1);
           }
         });
       });
-      drawLines();
     }
 
     function createTetromino(type) {
@@ -324,17 +331,29 @@ module.exports = {
         });
       });
     }
+    let nextT = piece();
+
+    function piece() {
+      const pieces = "TJLOSZI";
+      return createTetromino(pieces[(pieces.length * Math.random()) | 0]);
+    }
+
+    function showNext() {
+      nextPiece = piece();
+      contextNext.fillStyle = "rgb(255, 192, 227)";
+      contextNext.fillRect(0, 0, canvasNext.width, canvasNext.height);
+      drawMatrix(contextNext, nextPiece, { x: 0, y: 0 });
+      nextT = nextPiece;
+    }
 
     // Sorgt dafür, dass ein neuer, zufälliger Block von oben fällt
     function reset() {
-      const pieces = "TJLOSZI";
-      player.matrix = createTetromino(
-        pieces[(pieces.length * Math.random()) | 0]
-      );
+      player.matrix = nextT;
       player.position.y = 0;
       player.position.x =
         ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
 
+      showNext();
       if (collide(arena, player)) {
         gom.show();
       }

@@ -1,10 +1,23 @@
-canvas {
+#tetris {
   border: solid 7px hotpink;
-  height: 80vh;
-  bottom: 6vh;
+  height: 800px;
+  top: 100px;
   left: 0;
   right: 0;
   margin: auto;
+  position: absolute;
+}
+
+#next {
+  border: solid 7px hotpink;
+  height: 160px;
+  top: 100px;
+  left: 0;
+  right: 650px;
+  margin: auto;
+  padding: 2vh;
+  padding-bottom: 0;
+  background-color: rgb(255, 192, 227);
   position: absolute;
 }
 
@@ -12,8 +25,8 @@ canvas {
   font-size: 29px;
   width: 260px;
   padding-left: 12px;
-  top: 14vh;
-  left: 95vh;
+  top: 100px;
+  left: 760px;
   right: 0;
   margin: auto;
   position: absolute;
