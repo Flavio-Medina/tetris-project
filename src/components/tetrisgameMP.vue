@@ -539,11 +539,11 @@ module.exports = {
 }
 
 .sc1P {
-  left: 100px;
+  left: 10px;
 }
 
 .sc2P {
-  right: 100px;
+  right: 10px;
 }
 
 #next1P,
@@ -559,11 +559,11 @@ module.exports = {
 }
 
 #next1P {
-  left: 385px;
+  left: 310px;
 }
 
 #next2P {
-  right: 385px;
+  right: 310px;
 }
 
 @media (max-width: 1700px) {
