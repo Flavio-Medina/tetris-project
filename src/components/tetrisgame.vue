@@ -55,7 +55,6 @@ module.exports = {
     const canvasNext = document.getElementById("next");
     const contextNext = canvasNext.getContext("2d");
     contextNext.scale(20, 20);
-    const nextField = createMatrix(3, 4);
 
     context.scale(20, 20);
 

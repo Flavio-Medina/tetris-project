@@ -18,3 +18,9 @@
     }
   };
 </script>
+
+<style>
+.sounds {
+  display: initial;
+}
+</style>

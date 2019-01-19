@@ -18,3 +18,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.sounds {
+  display: none;
+}
+</style>

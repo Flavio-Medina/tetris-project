@@ -2,6 +2,8 @@
   <div>
     <canvas id="tetris1P" width="240" height="400"/>
     <canvas id="tetris2P" width="240" height="400"/>
+    <canvas id="next1P" width="60" height="80"/>
+    <canvas id="next2P" width="60" height="80"/>
     <p class="sc1P">
       Score:
       <span class="score1P"></span>
@@ -60,7 +62,16 @@ module.exports = {
     const context1P = canvas1P.getContext("2d");
     const canvas2P = document.getElementById("tetris2P");
     const context2P = canvas2P.getContext("2d");
+
     const linesfx = new Audio("../../static/cat.mp3");
+
+    const canvasNext1P = document.getElementById("next1P");
+    const contextNext1P = canvasNext1P.getContext("2d");
+    contextNext1P.scale(20, 20);
+
+    const canvasNext2P = document.getElementById("next2P");
+    const contextNext2P = canvasNext2P.getContext("2d");
+    contextNext2P.scale(20, 20);
 
     context1P.scale(20, 20);
     context2P.scale(20, 20);
@@ -110,6 +121,7 @@ module.exports = {
 
       drawMatrix(arena, { x: 0, y: 0 }, context);
       drawMatrix(player.matrix, player.position, context);
+      drawLines(context);
     }
 
     function drawLines(context) {
@@ -139,7 +151,6 @@ module.exports = {
           }
         });
       });
-      drawLines(context);
     }
 
     function createTetromino(type) {
@@ -368,16 +379,43 @@ module.exports = {
       });
     }
 
+    let nextT1P = piece();
+    let nextT2P = piece();
+
+    function piece() {
+      const pieces = "TJLOSZI";
+      return createTetromino(pieces[(pieces.length * Math.random()) | 0]);
+    }
+
+    function showNext(player) {
+      nextPiece = piece();
+      if (player === player1) {
+        contextNext1P.fillStyle = "rgb(255, 192, 227)";
+        contextNext1P.fillRect(0, 0, canvasNext1P.width, canvasNext1P.height);
+        drawMatrix(nextPiece, { x: 0, y: 0 }, contextNext1P);
+        nextT1P = nextPiece;
+      }
+      if (player === player2) {
+        contextNext2P.fillStyle = "rgb(255, 192, 227)";
+        contextNext2P.fillRect(0, 0, canvasNext2P.width, canvasNext2P.height);
+        drawMatrix(nextPiece, { x: 0, y: 0 }, contextNext2P);
+        nextT2P = nextPiece;
+      }
+    }
+
     // Sorgt dafür, dass ein neuer, zufälliger Block von oben fällt
     function reset(arena, player) {
-      const pieces = "TJLOSZI";
-      player.matrix = createTetromino(
-        pieces[(pieces.length * Math.random()) | 0]
-      );
+      if (player === player1) {
+        player.matrix = nextT1P;
+      }
+      if (player === player2) {
+        player.matrix = nextT2P;
+      }
       player.position.y = 0;
       player.position.x =
         ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
 
+      showNext(player);
       if (collide(arena, player)) {
         arena.forEach(row => row.fill(0));
         player.score = 0;
@@ -450,13 +488,14 @@ module.exports = {
 </script>
 
 <style scoped>
-canvas {
+#tetris1P,
+#tetris2P {
   display: inline-block;
   position: fixed;
   border: solid 7px hotpink;
-  height: 80vh;
-  bottom: 6vh;
-  margin: 0;
+  height: 800px;
+  top: 100px;
+  margin: auto;
 }
 
 #tetris1P,
@@ -476,7 +515,7 @@ canvas {
   font-size: 38px;
   width: 280px;
   padding-left: 12px;
-  top: 14vh;
+  top: 100px;
   margin: auto;
   position: fixed;
   border: solid 5px hotpink;
@@ -487,10 +526,10 @@ canvas {
 .scs1P,
 .scs2P {
   font-size: 18px;
-  width: 48.5vh;
+  width: 486px;
   height: 36px;
   padding-left: 12px;
-  bottom: 86vh;
+  top: 64px;
   margin: auto;
   position: fixed;
   border: solid 5px hotpink;
@@ -507,9 +546,31 @@ canvas {
   right: 100px;
 }
 
+#next1P,
+#next2P {
+  border: solid 7px hotpink;
+  height: 160px;
+  top: 100px;
+  margin: auto;
+  padding: 2vh;
+  padding-bottom: 0;
+  background-color: rgb(255, 192, 227);
+  position: absolute;
+}
+
+#next1P {
+  left: 385px;
+}
+
+#next2P {
+  right: 385px;
+}
+
 @media (max-width: 1700px) {
   .sc1P,
-  .sc2P {
+  .sc2P,
+  #next1P,
+  #next2P {
     display: none;
   }
 }

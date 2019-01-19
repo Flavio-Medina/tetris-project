@@ -77,3 +77,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.sounds {
+  display: initial;
+}
+</style>
