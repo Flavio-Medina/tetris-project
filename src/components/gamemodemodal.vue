@@ -13,6 +13,9 @@
       <b-button class="col align-self-center btn btn-primary" to="tetrisDifficultyMedium">
         <p class="btnFont">Difficulty: Medium</p>
       </b-button>
+      <b-button class="col align-self-center btn btn-primary" to="tetrisTimer">
+        <p class="btnFont">Timer</p>
+      </b-button>
       <b-button class="col align-self-center btn btn-primary" to="tetrisinv">
         <p class="btnFont">Invisible</p>
       </b-button>
