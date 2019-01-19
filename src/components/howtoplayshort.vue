@@ -12,9 +12,13 @@
 p {
   color: hotpink;
   position: fixed;
-  bottom: 0px;
-  left: 10px;
-  padding: 4px;
+  bottom: 2vh;
+  margin: 0;
+  padding: 0.6em;
+  width: 14.2em;
+  font-size: 18px;
+  font-weight: 450;
+  left: 1vw;
   border-style: solid;
   border-color: hotpink;
   background-color: rgb(255, 214, 237);

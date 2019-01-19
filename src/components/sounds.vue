@@ -47,8 +47,7 @@ pre {
   border-style: solid;
   border-color: hotpink;
   background-color: rgb(255, 214, 237);
-  padding: 4px;
-  margin-left: 0px;
+  padding: 4px 8px 4px 6px;
 }
 
 .switch {

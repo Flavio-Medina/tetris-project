@@ -13,7 +13,7 @@
   height: 160px;
   top: 100px;
   left: 0;
-  right: 650px;
+  right: 640px;
   margin: auto;
   padding: 2vh;
   padding-bottom: 0;
@@ -22,11 +22,12 @@
 }
 
 .sc {
-  font-size: 29px;
-  width: 260px;
-  padding-left: 12px;
+  font-size: 30px;
+  font-weight: 600;
+  width: 9.3em;
+  padding-left: 0.3em;
   top: 100px;
-  left: 760px;
+  left: 770px;
   right: 0;
   margin: auto;
   position: absolute;
@@ -37,7 +38,8 @@
 
 #gameovermodal {
   font-size: 64px;
-  padding-left: 40px;
+  font-weight: 600;
+  padding-left: 0.4em;
 }
 
 @media (max-width: 900px) {

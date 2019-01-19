@@ -12,12 +12,8 @@
       <p v-b-modal.h2p class="gm">How to Play</p>
       <howtoplaymodal/>
       <b-navbar-nav class="ml-auto">
-        <b-navbar-brand to="user/register">
-          <p class="gm">Register</p>
-        </b-navbar-brand>
-        <b-navbar-brand to="user/login">
-          <p class="gm" to="login">Login</p>
-        </b-navbar-brand>
+        <p class="gm" to="user/register">Register</p>
+        <p class="gm" to="user/login">Login</p>
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -49,18 +45,19 @@ body {
 }
 
 #gmlogo {
-  width: 128px;
+  width: 6em;
 }
 
 .pink {
   background-color: rgb(255, 105, 180);
-  max-height: 68px;
+  max-height: 8em;
 }
 
 .gm {
   cursor: pointer;
   font-size: 32px;
-  margin-left: 2vw;
+  font-weight: 600;
+  margin-left: 3vw;
   margin-bottom: 0;
   color: rgb(255, 192, 227);
   white-space: nowrap;
@@ -68,7 +65,7 @@ body {
 
 .sounds {
   top: 9vh;
-  left: 10px;
+  left: 1vw;
 }
 
 @media (max-width: 900px) {
@@ -77,7 +74,3 @@ body {
   }
 }
 </style>
-
-
-
-

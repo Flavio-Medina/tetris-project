@@ -89,7 +89,7 @@ body {
 
 #mlogo {
   max-width: 60vw;
-  max-height: 20vh;
+  max-height: 18vh;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -104,7 +104,7 @@ a {
 
 <style scoped>
 .sounds {
-  top: 10px;
-  left: 10px;
+  top: 1vh;
+  left: 1vw;
 }
 </style>

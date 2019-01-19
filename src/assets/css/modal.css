@@ -1,12 +1,12 @@
 .btnFont {
   font-size: 10vh;
-  line-height: 10vh;
+  line-height: 13vh;
   color: rgb(255, 192, 227);
   overflow: hidden;
 }
 
 .btn-primary {
-  margin-bottom: 8vh;
+  margin-bottom: 5vh;
   background-color: hotpink;
   border-color: rgb(255, 192, 227);
 }

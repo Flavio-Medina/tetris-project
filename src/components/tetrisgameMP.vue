@@ -420,7 +420,6 @@ module.exports = {
         arena.forEach(row => row.fill(0));
         player.score = 0;
         player.level = 1;
-        player.level = 0;
         player.dropInterval = 1000;
         player.gameover += 1;
         updateScoreAndLevel(player);
@@ -513,6 +512,7 @@ module.exports = {
 .sc1P,
 .sc2P {
   font-size: 38px;
+  font-weight: 600;
   width: 280px;
   padding-left: 12px;
   top: 100px;
