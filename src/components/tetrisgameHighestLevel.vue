@@ -216,9 +216,7 @@ module.exports = {
       "keydown",
       function(e) {
         if (
-          ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp", "Space"].indexOf(
-            e.key
-          ) > -1
+          ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp", " "].indexOf(e.key) > -1
         ) {
           e.preventDefault();
         }

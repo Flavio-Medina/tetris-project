@@ -250,6 +250,18 @@ module.exports = {
       }
     });
 
+    window.addEventListener(
+      "keydown",
+      function(e) {
+        if (
+          ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp", " "].indexOf(e.key) > -1
+        ) {
+          e.preventDefault();
+        }
+      },
+      false
+    );
+
     function move(offset) {
       if (!collide(arena, player)) {
         player.position.x += offset;
