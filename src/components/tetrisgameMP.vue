@@ -364,7 +364,7 @@ module.exports = {
         if (document.getElementById("sfx").checked === true) {
           linesfx.play();
         }
-        player.score += 10;
+        player.score += 9 + player.level;
         player.lines += 1;
       }
     }
