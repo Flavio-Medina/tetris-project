@@ -18,7 +18,7 @@ p {
   padding: 0.6em;
   width: 14.2em;
   font-size: 18px;
-  font-weight: 450;
+  font-weight: 500;
   left: 1vw;
   border-style: solid;
   border-color: hotpink;
