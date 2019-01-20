@@ -9,7 +9,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in User" :key="item._id">
+        <tr v-for="item in sortedUser" :key="item._id">
           <td class="text-left">{{ item.username }}</td>
           <td class="text-left">{{ item.lines }}</td>
           <td class="text-left">{{ item.score }}</td>
@@ -25,8 +25,15 @@ export default {
   name: "user",
   data() {
     return {
-      User: []
+      User: [],
+      items: [],
+      currentSort: "score"
     };
+  },
+  methods: {
+    sort: function(s) {
+      this.currentSort = s;
+    }
   },
   mounted() {
     axios
@@ -37,6 +44,16 @@ export default {
       .catch(error => {
         console.log(error);
       });
+  },
+  computed: {
+    sortedUser: function() {
+      return this.User.sort((a, b) => {
+        let modifier = -1;
+        if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+        if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+        return 0;
+      });
+    }
   }
 };
 </script>
