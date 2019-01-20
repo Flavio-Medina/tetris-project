@@ -1,5 +1,5 @@
 <template>
-  <div id="gmb">
+  <div>
     <sounds/>
     <b-navbar class="pink" type="dark" toggleable="md" sticky>
       <b-navbar-brand to="/">
@@ -103,11 +103,5 @@ body {
 .sounds {
   top: 9vh;
   left: 1vw;
-}
-
-@media (max-width: 900px) {
-  #gmb {
-    display: none;
-  }
 }
 </style>

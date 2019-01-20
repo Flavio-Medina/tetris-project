@@ -1,5 +1,5 @@
 <template>
-  <p id="h2pst">Controls Case Sensitive!:
+  <p>Controls Case Sensitive!:
     <br>:4/q Move Left/Right
     <br>C: Rotate
     <br>L: Soft Drop
@@ -18,14 +18,6 @@ p {
   border-style: solid;
   border-color: hotpink;
   background-color: rgb(255, 214, 237);
-}
-</style>
-
-<style>
-@media (max-width: 900px) {
-  #h2pst {
-    display: none;
-  }
 }
 </style>
 

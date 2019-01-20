@@ -113,10 +113,4 @@ body {
   top: 9vh;
   left: 1vw;
 }
-
-@media (max-width: 900px) {
-  #gmb {
-    display: none;
-  }
-}
 </style>

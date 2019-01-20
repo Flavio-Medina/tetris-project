@@ -1,11 +1,10 @@
 <template>
-  <p id="h2ps">Controls:
+  <p>Controls:
     <br>Left/Right: Move Left/Right
     <br>Up: Rotate
     <br>Down: Soft Drop
     <br>Space: Hard Drop
-    <br>C: Hold piece
-    <br>
+    <br>C: Hold Piece
   </p>
 </template>
 
@@ -23,13 +22,5 @@ p {
   border-style: solid;
   border-color: hotpink;
   background-color: rgb(255, 214, 237);
-}
-</style>
-
-<style>
-@media (max-width: 900px) {
-  #h2ps {
-    display: none;
-  }
 }
 </style>

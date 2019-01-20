@@ -101,10 +101,4 @@ input:checked + .slider:before {
   -ms-transform: translateX(13px);
   transform: translateX(13px);
 }
-
-@media (max-width: 900px) {
-  .sounds {
-    display: none;
-  }
-}
 </style>

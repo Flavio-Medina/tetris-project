@@ -17,7 +17,7 @@
       <br>Up: Rotate
       <br>Down: Soft Drop
       <br>Space: Hard Drop
-      <br>C: Hold piece
+      <br>C: Hold Piece
       <br>
       <br>
       <br>Controls 2 Players:
@@ -27,14 +27,14 @@
       <br>W: Rotate
       <br>S: Soft Drop
       <br>F: Hard Drop
-      <br>Q: Hold piece
+      <br>Q: Hold Piece
       <br>
       <br>2P Controls:
       <br>Left/Right: Move Left/Right
       <br>Up: Rotate
       <br>Down: Soft Drop
       <br>RightShift: Hard Drop
-      <br>Enter: Hold piece
+      <br>Enter: Hold Piece
     </p>
   </b-modal>
 </template>

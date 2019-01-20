@@ -4,6 +4,8 @@
     <canvas id="tetris2P" width="240" height="400"/>
     <canvas id="next1P" width="60" height="80"/>
     <canvas id="next2P" width="60" height="80"/>
+    <canvas id="hold1P" width="60" height="80"/>
+    <canvas id="hold2P" width="60" height="80"/>
     <p class="sc1P">
       Score:
       <span class="score1P"></span>
@@ -42,9 +44,19 @@ module.exports = {
     const contextNext1P = canvasNext1P.getContext("2d");
     contextNext1P.scale(20, 20);
 
+    const canvasHold1P = document.getElementById("hold1P");
+    const contextHold1P = canvasHold1P.getContext("2d");
+    contextHold1P.scale(20, 20);
+
+
     const canvasNext2P = document.getElementById("next2P");
     const contextNext2P = canvasNext2P.getContext("2d");
     contextNext2P.scale(20, 20);
+
+    const canvasHold2P = document.getElementById("hold2P");
+    const contextHold2P = canvasHold2P.getContext("2d");
+    contextHold2P.scale(20, 20);
+
 
     context1P.scale(20, 20);
     context2P.scale(20, 20);
@@ -63,7 +75,8 @@ module.exports = {
       dropInterval: 1000,
       level: 1,
       lines: 0,
-      gameover: 0
+      gameover: 0,
+      counter: 0
     };
 
     const player2 = {
@@ -77,7 +90,8 @@ module.exports = {
       dropInterval: 1000,
       level: 1,
       lines: 0,
-      gameover: 0
+      gameover: 0,
+      counter: 0
     };
 
     function createMatrix(width, height) {
@@ -263,6 +277,11 @@ module.exports = {
         rotate(1, arena1P, player1);
       } else if (event.key === "f" || event.key === "F") {
         hardDrop(arena1P, player1);
+      } else if (event.key === "q" || event.key === "Q") {
+          if (player1.counter > 0) {
+            hold1P();
+            player1.counter = 0;
+          }
       }
     });
 
@@ -277,6 +296,11 @@ module.exports = {
         rotate(1, arena2P, player2);
       } else if (event.location === 2 && event.shiftKey) {
         hardDrop(arena2P, player2);
+      } else if (event.key === "Enter") {
+          if (player2.counter > 0) {
+            hold2P();
+            player2.counter = 0;
+          }
       }
     });
 
@@ -406,21 +430,71 @@ module.exports = {
       }
     }
 
+
+    let holdT1P = piece();
+    let holdT2P = piece();
+
+    function drawHoldPiece1P() {
+      contextHold1P.fillStyle = "rgb(255, 192, 227)";
+      contextHold1P.fillRect(0, 0, canvasHold1P.width, canvasHold1P.height);
+      drawMatrix(holdT1P, { x: 0, y: 0 }, contextHold1P);
+    }
+
+    function drawHoldPiece2P() {
+      contextHold2P.fillStyle = "rgb(255, 192, 227)";
+      contextHold2P.fillRect(0, 0, canvasHold2P.width, canvasHold2P.height);
+      drawMatrix(holdT2P, { x: 0, y: 0 }, contextHold2P);
+    }
+
+    function hold1P() {
+      contextHold1P.fillStyle = "rgb(255, 192, 227)";
+      contextHold1P.fillRect(0, 0, canvasHold1P.width, canvasHold1P.height);
+      drawMatrix(player1.matrix, { x: 0, y: 0 }, contextHold1P);
+      [player1.matrix, holdT1P] = [holdT1P, player1.matrix];
+      player1.position.y = 0;
+      player1.position.x = ((arena1P[0].length / 2) | 0) - ((player1.matrix[0].length / 2) | 0);
+    }
+
+    function hold2P() {
+      contextHold2P.fillStyle = "rgb(255, 192, 227)";
+      contextHold2P.fillRect(0, 0, canvasHold2P.width, canvasHold2P.height);
+      drawMatrix(player2.matrix, { x: 0, y: 0 }, contextHold2P);
+      [player2.matrix, holdT2P] = [holdT2P, player2.matrix];
+      player2.position.y = 0;
+      player2.position.x = ((arena2P[0].length / 2) | 0) - ((player2.matrix[0].length / 2) | 0);
+    }
+
+
     // Sorgt dafür, dass ein neuer, zufälliger Block von oben fällt
     function reset(arena, player) {
       if (player === player1) {
         player.matrix = nextT1P;
+        player1.counter++;
       }
       if (player === player2) {
         player.matrix = nextT2P;
+        player2.counter++;
       }
       player.position.y = 0;
-      player.position.x =
-        ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
+      player.position.x = ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
 
       showNext(player);
+
       if (collide(arena, player)) {
         arena.forEach(row => row.fill(0));
+
+        if (player === player1) {
+          holdT1P = piece();
+          drawHoldPiece1P();
+          player1.counter = 1;
+        }
+
+        if (player === player2) {
+          holdT2P = piece();
+          drawHoldPiece2P();
+          player2.counter = 1;
+        }
+
         player.score = 0;
         player.level = 1;
         player.dropInterval = 1000;
@@ -466,6 +540,8 @@ module.exports = {
 
     reset(arena1P, player1);
     reset(arena2P, player2);
+    drawHoldPiece1P();
+    drawHoldPiece2P();
     updateScoreAndLevel(player1);
     updateScoreAndLevel(player2);
     updateGame();
@@ -528,12 +604,24 @@ module.exports = {
   position: absolute;
 }
 
-#next1P {
+#next1P, #hold1P {
   left: 190px;
 }
 
-#next2P {
+#next2P, #hold2P {
   right: 190px;
+}
+
+#hold1P,
+#hold2P {
+  border: solid 7px hotpink;
+  height: 160px;
+  top: 260px;
+  margin: auto;
+  padding: 2vh;
+  padding-bottom: 0;
+  background-color: rgb(255, 192, 227);
+  position: absolute;
 }
 </style>
 
