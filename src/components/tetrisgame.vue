@@ -1,7 +1,9 @@
 <template>
   <div>
     <canvas id="tetris" width="240" height="400"/>
+    <p class="next">Next:</p>
     <canvas id="next" width="60" height="80"/>
+    <canvas id="hold" width="60" height="80"/>
     <p class="sc">
       Score:
       <span class="score"></span>
@@ -55,18 +57,24 @@
 <script>
 module.exports = {
   mounted() {
-    const canvas = document.getElementById("tetris");
-    const context = canvas.getContext("2d");
     const linesfx = new Audio("../../static/cat.mp3");
     const gom = this.$refs.go;
     document.getElementById("resta").onclick = function() {
       restart();
     };
+
+    const canvas = document.getElementById("tetris");
+    const context = canvas.getContext("2d");
+    context.scale(20, 20);
+
     const canvasNext = document.getElementById("next");
     const contextNext = canvasNext.getContext("2d");
     contextNext.scale(20, 20);
 
-    context.scale(20, 20);
+    const canvasHold = document.getElementById("hold");
+    const contextHold = canvasHold.getContext("2d");
+    contextHold.scale(20, 20);
+
 
     const arena = createMatrix(12, 20);
 
@@ -232,6 +240,11 @@ module.exports = {
         rotate(1);
       } else if (event.key === " ") {
         hardDrop();
+      } else if (event.key === "c" || event.key === "C") {
+          if(counter > 0) {
+            hold();
+            counter = 0;
+          }
       }
     });
 
@@ -325,6 +338,7 @@ module.exports = {
       });
     }
 
+
     let nextT = piece();
 
     function piece() {
@@ -340,8 +354,30 @@ module.exports = {
       nextT = nextPiece;
     }
 
+
+    let holdT = piece();
+
+    function drawHoldPiece() {
+      contextHold.fillStyle = "rgb(255, 192, 227)";
+      contextHold.fillRect(0, 0, canvasHold.width, canvasHold.height);
+      drawMatrix(contextHold, holdT, {x: 0, y: 0});
+    }
+
+    function hold() {
+      contextHold.fillStyle = "rgb(255, 192, 227)";
+      contextHold.fillRect(0, 0, canvasHold.width, canvasHold.height);
+      drawMatrix(contextHold, player.matrix, {x: 0, y: 0});
+      [player.matrix, holdT] = [holdT, player.matrix];
+      player.position.y = 0;
+      player.position.x = ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
+    }
+
+
+    let counter = 0;
+
     // Sorgt dafür, dass ein neuer, zufälliger Block von oben fällt
     function reset() {
+      counter++;
       player.matrix = nextT;
       player.position.y = 0;
       player.position.x =
@@ -356,6 +392,9 @@ module.exports = {
     function restart() {
       gom.hide();
       arena.forEach(row => row.fill(0));
+      holdT = piece();
+      drawHoldPiece();
+      counter = 1;
       dropInterval = 1000;
       player.score = 0;
       player.level = 1;
@@ -386,6 +425,7 @@ module.exports = {
     ];
 
     reset();
+    drawHoldPiece();
     updateScoreAndLevel();
     updateGame();
   }

@@ -17,6 +17,7 @@
       <br>Up: Rotate
       <br>Down: Soft Drop
       <br>Space: Hard Drop
+      <br>C: Hold piece
       <br>
       <br>
       <br>Controls 2 Players:
