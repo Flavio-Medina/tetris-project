@@ -1,17 +1,16 @@
 <template>
   <div>
     <img src="/static/logo.png" alt="Tetris" id="mlogo">
-    <div v-if="check"> <!-- Hier bitte check einfügen, ob man eingeloggt ist. Soll angezeigt werden, wenn man eingeloggt ist. -->
-      <p class="user">Logged in as <span ref="username"/></p> <!-- Bitte testen: Username soll angezeigt werden. -->
-    <b-btn class="btn btn-primary btnlog" id="btnlogout" v-on:click="logout">
-      <p class="btnreglogfont">Log out</p>
-    </b-btn>
+    <div v-if="this.loggedIn">
+      <b-btn class="btn btn-primary btnlog" id="btnlogout" v-on:click="logout">
+        <p class="btnreglogfont">Log out</p>
+      </b-btn>
     </div>
-    <div v-else> <!-- Bitte testen: Soll automatisch angezeigt werden, wenn man nicht eingeloggt ist oder ausloggt. -->
-      <b-btn class="btn btn-primary btnreg" to="/user/register">
+    <div v-else>
+      <b-btn class="btn btn-primary btnreg" to="user/register">
         <p class="btnreglogfont">Register</p>
       </b-btn>
-      <b-btn class="btn btn-primary btnlog" to="/user/login">
+      <b-btn class="btn btn-primary btnlog" to="user/login">
         <p class="btnreglogfont">Login</p>
       </b-btn>
     </div>
@@ -40,11 +39,6 @@ import highscoremodal from "./highscoremodal";
 import sounds from "./sounds";
 import gamemodemodal from "./gamemodemodal";
 import annoyingcat from "./annoyingcat";
-import EventBus from "./EventBus";
-
-EventBus.$on("logged-in", test => {
-  console.log(test);
-});
 
 export default {
   components: {
@@ -54,25 +48,33 @@ export default {
     gamemodemodal,
     annoyingcat
   },
+
   data() {
     return {
-      auth: "",
-      user: ""
+      loggedIn: this.isLoggedIn
     };
   },
 
   methods: {
     logout() {
       localStorage.removeItem("usertoken");
+      this.loggedIn = false;
+    }
+  },
+
+  computed: {
+    isLoggedIn() {
+      if (localStorage.getItem("usertoken") === null || localStorage.getItem("usertoken") === undefined) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
 
   mounted() {
-    EventBus.$on("logged-in", status => {
-      this.auth = status;
-    });
-    this.$refs.username.innerText = this.user; // Bitte testen
-  }
+    this.loggedIn = this.isLoggedIn;
+  },
 };
 </script>
 

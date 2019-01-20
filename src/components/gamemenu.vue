@@ -11,10 +11,19 @@
       <highscoremodal/>
       <p v-b-modal.h2p class="gm">How to Play</p>
       <howtoplaymodal/>
-      <b-navbar-nav class="ml-auto">
-        <p class="gm" to="user/register">Register</p>
-        <p class="gm" to="user/login">Login</p>
-      </b-navbar-nav>
+    <div v-if="this.loggedIn">
+      <b-btn class="btn btn-primary btnlog" id="btnlogout" v-on:click="logout">
+        <p class="btnreglogfont">Log out</p>
+      </b-btn>
+    </div>
+    <div v-else>
+      <b-btn class="btn btn-primary btnreg" to="user/register">
+        <p class="btnreglogfont">Register</p>
+      </b-btn>
+      <b-btn class="btn btn-primary btnlog" to="user/login">
+        <p class="btnreglogfont">Login</p>
+      </b-btn>
+    </div>
     </b-navbar>
   </div>
 </template>
@@ -31,11 +40,41 @@ export default {
     gamemodemodal,
     highscoremodal,
     howtoplaymodal
-  }
+  },
+
+  data() {
+    return {
+      loggedIn: this.isLoggedIn
+    };
+  },
+
+  methods: {
+    logout() {
+      localStorage.removeItem("usertoken");
+      this.loggedIn = false;
+    }
+  },
+
+  computed: {
+    isLoggedIn() {
+      if (localStorage.getItem("usertoken") === null || localStorage.getItem("usertoken") === undefined) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
+
+  mounted() {
+    this.loggedIn = this.isLoggedIn;
+  },
 };
 </script>
 
 <style>
+@import "../assets/css/modal.css";
+@import "../assets/css/btnreglog.css";
+
 body {
   background-image: url("/static/background.jpg");
   background-repeat: no-repeat;

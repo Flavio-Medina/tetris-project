@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const user = require('./models/modelUser');
 const scoring = require('./models/modelScoring');
-// const DATABASE_CONNECTION = 'mongodb://mongo:27017/tetris';
-const DATABASE_CONNECTION = 'mongodb://localhost/TetrisDB';
+const DATABASE_CONNECTION = 'mongodb://mongo:27017/tetris';
 
 
 var db = mongoose.connect(DATABASE_CONNECTION, { useNewUrlParser: true, autoIndex: false })
@@ -11,6 +10,5 @@ var db = mongoose.connect(DATABASE_CONNECTION, { useNewUrlParser: true, autoInde
 
 module.exports = db;
 module.exports = {
-  // DB: 'mongodb://mongo:27017/tetris'
-  DB: 'mongodb://localhost/TetrisDB'
+  DB: 'mongodb://mongo:27017/tetris'
 }
