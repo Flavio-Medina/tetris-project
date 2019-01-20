@@ -145,7 +145,7 @@ module.exports = {
     }
 
     let dropCounter = 0;
-    let dropInterval = 62.5;
+    let dropInterval = 100;
 
     let lastTime = 0;
 
