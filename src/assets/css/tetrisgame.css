@@ -34,7 +34,7 @@
   width: 9.3em;
   padding-left: 0.3em;
   top: 100px;
-  left: 800px;
+  left: 710px;
   right: 0;
   margin: auto;
   position: absolute;
@@ -72,7 +72,7 @@
 }
 
 @media (max-width: 900px) {
-  .sc {
+  .sc, .next, .hold {
     display: none;
   }
 }
