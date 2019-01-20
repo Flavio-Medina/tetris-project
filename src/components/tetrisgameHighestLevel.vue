@@ -3,6 +3,7 @@
     <canvas id="tetris" width="240" height="400"/>
     <p class="next">Next:</p>
     <canvas id="next" width="60" height="80"/>
+    <p class="hold">Hold:</p>
     <canvas id="hold" width="60" height="80"/>
     <p class="sc">
       Score:
