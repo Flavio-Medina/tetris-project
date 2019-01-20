@@ -27,12 +27,14 @@
       <br>W: Rotate
       <br>S: Soft Drop
       <br>F: Hard Drop
+      <br>Q: Hold piece
       <br>
       <br>2P Controls:
       <br>Left/Right: Move Left/Right
       <br>Up: Rotate
       <br>Down: Soft Drop
       <br>RightShift: Hard Drop
+      <br>Enter: Hold piece
     </p>
   </b-modal>
 </template>

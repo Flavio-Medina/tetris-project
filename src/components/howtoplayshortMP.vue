@@ -5,6 +5,7 @@
       <br>W: Rotate
       <br>S: Soft Drop
       <br>F: Hard Drop
+      <br>Q: Hold piece
       <br>
     </p>
     <p id="p2">2P Controls:
@@ -12,6 +13,7 @@
       <br>Up: Rotate
       <br>Down: Soft Drop
       <br>RightShift: Hard Drop
+      <br>Enter: Hold piece
       <br>
     </p>
   </div>
