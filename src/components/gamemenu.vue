@@ -20,8 +20,7 @@
 </template>
 
 <script>
-import sounds from "./sounds";
-import startmenu from "./startmenu";
+import sounds from "./sounds"
 import gamemodemodal from "./gamemodemodal";
 import highscoremodal from "./highscoremodal";
 import howtoplaymodal from "./howtoplaymodal";
@@ -29,7 +28,6 @@ export default {
   name: "gamemenu",
   components: {
     sounds,
-    startmenu,
     gamemodemodal,
     highscoremodal,
     howtoplaymodal

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <audio src="./static/cat.mp3" ref="sfx" type="audio/mpeg" autoplay loop></audio>
+    <audio src="./static/cat.mp3" type="audio/mpeg" autoplay loop></audio>
+    <audio src="./static/troll1.mp3" id="music" type="audio/mpeg" autoplay></audio>
     <canvas id="tetris" width="240" height="400"/>
     <p class="sc">
       Score:
@@ -48,6 +49,12 @@ module.exports = {
     document.getElementById("resta").onclick = function() {
       restart();
     };
+
+    var audio = document.getElementById("music");
+    audio.addEventListener("ended", function() {
+      audio.src = "../../static/troll2.mp3";
+      audio.play();
+    });
 
     context.scale(20, 20);
 
@@ -105,7 +112,14 @@ module.exports = {
       matrix.forEach((row, y) => {
         row.forEach((value, x) => {
           if (value !== 0) {
-            context.fillStyle = colors[value];
+            context.fillStyle =
+              "rgb(" +
+              Math.floor(Math.random() * 256) +
+              "," +
+              Math.floor(Math.random() * 256) +
+              "," +
+              Math.floor(Math.random() * 256) +
+              ")";
             context.fillRect(x + offset.x, y + offset.y, 1, 1);
           }
         });
@@ -161,6 +175,8 @@ module.exports = {
       if (dropCounter > dropInterval) {
         softDrop();
       }
+
+      rotate(-1);
 
       lastTime = time;
 
@@ -355,4 +371,17 @@ module.exports = {
 
 <style scoped>
 @import "../assets/css/tetrisgame.css";
+
+canvas {
+  animation: rotation 5s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
 </style>
