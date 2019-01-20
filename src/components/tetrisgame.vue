@@ -30,6 +30,16 @@
         <br>Level:
         <span class="level"></span>
       </p>
+      <form v-on:submit.prevent="highscore">
+        <input
+          type="text"
+          v-model="name"
+          class="form-control"
+          name="name"
+          placeholder="Enter your name for high score"
+        >
+        <button class="btn btn-lg btn-primary btn-block smbtn" type="submit">Submit High Score</button>
+      </form>
       <div class="container">
         <b-button class="col align-self-center btn btn-primary" id="resta">
           <p class="btnFont">Play again</p>
@@ -141,21 +151,30 @@ module.exports = {
     let lastTime = 0;
 
     function updateGame(time = 0) {
-      if (player.score >= 40 && player.score <= 79) {
+      if (player.lines >= 40 && player.lines <= 79) {
         player.level = 2;
-        dropInterval = 750;
+        dropInterval = 800;
       } else if (player.score >= 80 && player.score <= 119) {
         player.level = 3;
-        dropInterval = 500;
+        dropInterval = 600;
       } else if (player.score >= 120 && player.score <= 159) {
         player.level = 4;
-        dropInterval = 250;
+        dropInterval = 400;
       } else if (player.score >= 160 && player.score <= 199) {
         player.level = 5;
-        dropInterval = 125;
-      } else if (player.score >= 200) {
+        dropInterval = 300;
+      } else if (player.score >= 200 && player.score <= 239) {
         player.level = 6;
-        dropInterval = 62.5;
+        dropInterval = 250;
+      } else if (player.score >= 240 && player.score <= 279) {
+        player.level = 7;
+        dropInterval = 200;
+      } else if (player.score >= 280 && player.score <= 319) {
+        player.level = 8;
+        dropInterval = 150;
+      } else if (player.score >= 320) {
+        player.level = 9;
+        dropInterval = 100;
       }
       updateScoreAndLevel();
 
