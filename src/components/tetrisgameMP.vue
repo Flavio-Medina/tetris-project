@@ -174,40 +174,58 @@ module.exports = {
     let lastTime = 0;
 
     function updateGame(time = 0) {
-      if (player1.score >= 40 && player1.score <= 79) {
+      if (player1.lines >= 3 && player1.lines <= 5) {
         player1.level = 2;
-        player1.dropInterval = 750;
-      } else if (player1.score >= 80 && player1.score <= 119) {
+        player1.dropInterval = 800;
+      } else if (player1.lines >= 6 && player1.lines <= 8) {
         player1.level = 3;
-        player1.dropInterval = 500;
-      } else if (player1.score >= 120 && player1.score <= 159) {
+        player1.dropInterval = 600;
+      } else if (player1.lines >= 9 && player1.lines <= 12) {
         player1.level = 4;
-        player1.dropInterval = 250;
-      } else if (player1.score >= 160 && player1.score <= 199) {
+        player1.dropInterval = 400;
+      } else if (player1.lines >= 13 && player1.lines <= 16) {
         player1.level = 5;
-        player1.dropInterval = 125;
-      } else if (player1.score >= 200) {
+        player1.dropInterval = 300;
+      } else if (player1.lines >= 17 && player1.lines <= 20) {
         player1.level = 6;
-        player1.dropInterval = 62.5;
+        player1.dropInterval = 250;
+      } else if (player1.lines >= 21 && player1.lines <= 25) {
+        player1.level = 7;
+        player1.dropInterval = 200;
+      } else if (player1.lines >= 26 && player1.lines <= 30) {
+        player1.level = 8;
+        player1.dropInterval = 150;
+      } else if (player1.lines >= 31) {
+        player1.level = 9;
+        player1.dropInterval = 100;
       }
 
       updateScoreAndLevel(player1);
 
-      if (player2.score >= 40 && player2.score <= 79) {
+      if (player2.lines >= 3 && player2.lines <= 5) {
         player2.level = 2;
-        player2.dropInterval = 750;
-      } else if (player2.score >= 80 && player2.score <= 119) {
+        player2.dropInterval = 800;
+      } else if (player2.lines >= 6 && player2.lines <= 8) {
         player2.level = 3;
-        player2.dropInterval = 500;
-      } else if (player2.score >= 120 && player2.score <= 159) {
+        player2.dropInterval = 600;
+      } else if (player2.lines >= 9 && player2.lines <= 12) {
         player2.level = 4;
-        player2.dropInterval = 250;
-      } else if (player2.score >= 160 && player2.score <= 199) {
+        player2.dropInterval = 400;
+      } else if (player2.lines >= 13 && player2.lines <= 16) {
         player2.level = 5;
-        player2.dropInterval = 125;
-      } else if (player2.score >= 200) {
+        player2.dropInterval = 300;
+      } else if (player2.lines >= 17 && player2.lines <= 20) {
         player2.level = 6;
-        player2.dropInterval = 62.5;
+        player2.dropInterval = 250;
+      } else if (player2.lines >= 21 && player2.lines <= 25) {
+        player2.level = 7;
+        player2.dropInterval = 200;
+      } else if (player2.lines >= 26 && player2.lines <= 30) {
+        player2.level = 8;
+        player2.dropInterval = 150;
+      } else if (player2.lines >= 31) {
+        player2.level = 9;
+        player2.dropInterval = 100;
       }
 
       updateScoreAndLevel(player2);

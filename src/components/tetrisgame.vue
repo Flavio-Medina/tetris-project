@@ -160,28 +160,28 @@ module.exports = {
     let lastTime = 0;
 
     function updateGame(time = 0) {
-      if (player.lines >= 40 && player.lines <= 79) {
+      if (player.lines >= 3 && player.lines <= 5) {
         player.level = 2;
         dropInterval = 800;
-      } else if (player.score >= 80 && player.score <= 119) {
+      } else if (player.lines >= 6 && player.lines <= 8) {
         player.level = 3;
         dropInterval = 600;
-      } else if (player.score >= 120 && player.score <= 159) {
+      } else if (player.lines >= 9 && player.lines <= 12) {
         player.level = 4;
         dropInterval = 400;
-      } else if (player.score >= 160 && player.score <= 199) {
+      } else if (player.lines >= 13 && player.lines <= 16) {
         player.level = 5;
         dropInterval = 300;
-      } else if (player.score >= 200 && player.score <= 239) {
+      } else if (player.lines >= 17 && player.lines <= 20) {
         player.level = 6;
         dropInterval = 250;
-      } else if (player.score >= 240 && player.score <= 279) {
+      } else if (player.lines >= 21 && player.lines <= 25) {
         player.level = 7;
         dropInterval = 200;
-      } else if (player.score >= 280 && player.score <= 319) {
+      } else if (player.lines >= 26 && player.lines <= 30) {
         player.level = 8;
         dropInterval = 150;
-      } else if (player.score >= 320) {
+      } else if (player.lines >= 31) {
         player.level = 9;
         dropInterval = 100;
       }
@@ -306,7 +306,7 @@ module.exports = {
         if (document.getElementById("sfx").checked === true) {
           linesfx.play();
         }
-        player.score += 10;
+        player.score += 9 + player.level;
         player.lines += 1;
       }
     }
