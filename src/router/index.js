@@ -4,7 +4,6 @@ import startmenu from '@/components/startmenu'
 import tetris from '@/components/tetris'
 import tetrisHighestLevel from '@/components/tetrisHighestLevel'
 import tetrisDifficultyMedium from '@/components/tetrisDifficultyMedium'
-import tetrisTimer from '@/components/tetrisTimer'
 import tetrisinv from '@/components/tetrisinv'
 import tetrisMP from '@/components/tetrisMP'
 import tetristroll from '@/components/tetristroll'
@@ -61,10 +60,5 @@ export default new Router({
       name: 'tetrisDifficultyMedium',
       component: tetrisDifficultyMedium
     },
-    {
-      path: '/tetrisTimer',
-      name: 'tetrisTimer',
-      component: tetrisTimer
-    }
   ]
 })

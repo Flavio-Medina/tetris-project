@@ -33,16 +33,12 @@
         <br>Level:
         <span class="level"></span>
       </p>
-      <form v-on:submit.prevent="highscore">
-        <input
-          type="text"
-          v-model="name"
-          class="form-control"
-          name="name"
-          placeholder="Enter your name for high score"
-        >
-        <button class="btn btn-lg btn-primary btn-block smbtn" type="submit">Submit High Score</button>
-      </form>
+      <button
+        class="col align-self-center btn btn-primary"
+        type="submit"
+        id="subhigh"
+        ref="hsref"
+      >Submit highscore as guest</button>
       <div class="container">
         <b-button class="col align-self-center btn btn-primary" id="resta">
           <p class="btnFont">Play again</p>
@@ -58,9 +54,15 @@
 <script>
 module.exports = {
   mounted() {
+    const axios = require("axios");
     const linesfx = new Audio("../../static/cat.mp3");
     const gom = this.$refs.go;
+    const hidebutton = this.$refs.hsref;
     document.getElementById("resta").onclick = function() {
+      restart();
+    };
+    document.getElementById("subhigh").onclick = function() {
+      highscore();
       restart();
     };
 
@@ -75,7 +77,6 @@ module.exports = {
     const canvasHold = document.getElementById("hold");
     const contextHold = canvasHold.getContext("2d");
     contextHold.scale(20, 20);
-
 
     const arena = createMatrix(12, 20);
 
@@ -242,10 +243,10 @@ module.exports = {
       } else if (event.key === " ") {
         hardDrop();
       } else if (event.key === "c" || event.key === "C") {
-          if(counter > 0) {
-            hold();
-            counter = 0;
-          }
+        if (counter > 0) {
+          hold();
+          counter = 0;
+        }
       }
     });
 
@@ -339,7 +340,6 @@ module.exports = {
       });
     }
 
-
     let nextT = piece();
 
     function piece() {
@@ -355,24 +355,23 @@ module.exports = {
       nextT = nextPiece;
     }
 
-
     let holdT = piece();
 
     function drawHoldPiece() {
       contextHold.fillStyle = "rgb(255, 192, 227)";
       contextHold.fillRect(0, 0, canvasHold.width, canvasHold.height);
-      drawMatrix(contextHold, holdT, {x: 0, y: 0});
+      drawMatrix(contextHold, holdT, { x: 0, y: 0 });
     }
 
     function hold() {
       contextHold.fillStyle = "rgb(255, 192, 227)";
       contextHold.fillRect(0, 0, canvasHold.width, canvasHold.height);
-      drawMatrix(contextHold, player.matrix, {x: 0, y: 0});
+      drawMatrix(contextHold, player.matrix, { x: 0, y: 0 });
       [player.matrix, holdT] = [holdT, player.matrix];
       player.position.y = 0;
-      player.position.x = ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
+      player.position.x =
+        ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
     }
-
 
     let counter = 0;
 
@@ -401,6 +400,14 @@ module.exports = {
       player.level = 1;
       player.lines = 0;
       updateScoreAndLevel();
+    }
+
+    function highscore() {
+      axios.post("/user/secureroute", {
+        username: "guest",
+        lines: player.lines,
+        score: player.score
+      });
     }
 
     function updateScoreAndLevel() {

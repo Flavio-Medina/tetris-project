@@ -39,6 +39,9 @@
               <b-alert variant="danger" :show="alertUsername">Please enter a username</b-alert>
             </div>
             <div>
+              <b-alert variant="danger" :show="alertExists">User already exists, please enter another username</b-alert>
+            </div>
+            <div>
               <b-alert variant="danger" :show="alertEmail">Please enter an email</b-alert>
             </div>
             <div>
@@ -64,7 +67,8 @@ export default {
       password: "",
       alertUsername: false,
       alertEmail: false,
-      alertPassword: false
+      alertPassword: false,
+      alertExists: false,
     };
   },
   methods: {
@@ -79,6 +83,7 @@ export default {
           if (!this.username) this.alertUsername = true;
           if (!this.email) this.alertEmail = true;
           if (!this.password) this.alertPassword = true;
+          if (res.data.error) this.alertExists = true;
           if (res.data.username && this.password) {
             console.log("Registration successful");
             router.push({ name: "login" });

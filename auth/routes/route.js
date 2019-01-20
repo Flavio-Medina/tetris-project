@@ -3,11 +3,13 @@ const router = express.Router()
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
-const User = require('../../config/database/models/modelUser');
+const User = require('../../config/database/models/modelUser')
+const High = require('../../config/database/models/modelScoring')
+const checkAuth = require('../check-auth')
 
 router.use(cors())
 
-process.env.SECRET_KEY = 'secret'
+process.env.SECRET_KEY = 'F82k9yU8m1xEb0X'
 
 router.post('/register', (req, res) => {
     const userData = {
@@ -72,4 +74,37 @@ router.post('/login', (req, res) => {
             res.send('error: ' + err)
         })
 })
+
+
+
+
+router.post('/secureroute', (req, res) => {
+    const userScoringData = {
+        username: req.body.username,
+        lines: req.body.lines,
+        score: req.body.score
+    }
+    High.findOne({
+        username: req.body.username
+    })
+    High.create(userScoringData)
+        .then(user => {
+            res.json({ status: user.username + ' has: ' + user.score + ' points (' + user.lines + ' lines)' })
+        })
+        .catch(err => {
+            res.send('error: ' + err)
+        })
+}
+);
+
+
+router.get('/secureroute', (req, res) => {
+    High.find({}, function (err, user) {
+        if (err)
+            res.send(err);
+        res.json(user);
+    });
+});
+
+
 module.exports = router;
