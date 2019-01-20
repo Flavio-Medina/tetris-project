@@ -1,6 +1,6 @@
 <template>
   <div clas="container">
-      <table class="table table-striped table-borderes">
+    <table class="table table-striped table-borderes">
       <thead>
         <tr>
           <th class="center">Username</th>
@@ -10,34 +10,35 @@
       </thead>
       <tbody>
         <tr v-for="item in User" :key="item._id">
-          <td class="text-left"> {{ item.username }}</td>
-          <td class="text-left"> {{ item.lines }}</td>
-          <td class="text-left"> {{ item.score }}</td>
+          <td class="text-left">{{ item.username }}</td>
+          <td class="text-left">{{ item.lines }}</td>
+          <td class="text-left">{{ item.score }}</td>
         </tr>
       </tbody>
     </table>
-      </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-    name:'user',
-    data() {
-        return {
-            User: [],
-        }
-    },
-        mounted() {
-        axios.get('/user/secureroute')
-            .then((response) => {
-                this.User = response.data;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    },
-}
+  name: "user",
+  data() {
+    return {
+      User: []
+    };
+  },
+  mounted() {
+    axios
+      .get("/user/highscore")
+      .then(response => {
+        this.User = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+};
 </script>
 
 <style scoped>

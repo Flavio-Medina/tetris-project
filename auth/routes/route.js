@@ -78,7 +78,7 @@ router.post('/login', (req, res) => {
 
 
 
-router.post('/secureroute', (req, res) => {
+router.post('/highscore', (req, res) => {
     const userScoringData = {
         username: req.body.username,
         lines: req.body.lines,
@@ -98,7 +98,7 @@ router.post('/secureroute', (req, res) => {
 );
 
 
-router.get('/secureroute', (req, res) => {
+router.get('/highscore', (req, res) => {
     High.find({}, function (err, user) {
         if (err)
             res.send(err);

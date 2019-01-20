@@ -415,7 +415,7 @@ module.exports = {
     }
 
     function highscore() {
-      axios.post("/user/secureroute", {
+      axios.post("/user/highscore", {
         username: "guest",
         lines: player.lines,
         score: player.score
