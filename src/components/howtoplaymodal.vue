@@ -1,7 +1,7 @@
 <template>
-  <b-modal id="h2p" size="lg" hide-footer no-enforce-focus title="How to Play">
+  <b-modal id="h2p" size="lg" hide-footer no-enforce-focus hide-header-close title="How to Play">
     <p>
-      <strong>Recommended Resolution: 1920x1080 (80% Zoom)</strong>
+      <strong>Recommended Resolution: 1920x1080 Fullscreen 100% Zoom</strong>
       <br>
       <br>Tetris is played on a 12 by 20 grid called the Matrix.
       Tetriminos in 7 different shapes fall from the top of the Matrix and come to rest at the bottom.
@@ -39,4 +39,10 @@
 
 <style>
 @import "../assets/css/modal.css";
+</style>
+
+<style scoped>
+p {
+  font-size: 1.1em;
+}
 </style>

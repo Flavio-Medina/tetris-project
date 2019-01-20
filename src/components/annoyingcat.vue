@@ -27,7 +27,8 @@ export default {
 <style>
 
 .cat {
-  margin-left: -10vw;
+  margin-left: -8vw;
+  margin-top: -8vh;
   height: 30%;
   opacity: 0.666;
   position: fixed;

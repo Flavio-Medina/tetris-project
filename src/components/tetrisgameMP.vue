@@ -25,33 +25,6 @@
       <br>Game Over:
       <span class="gameover2P"></span>
     </p>
-    <p class="scs1P">
-      Score:
-      <span class="score1P"></span>
-      &nbsp; &nbsp;
-      Lines:
-      <span class="lines1P"></span>
-      &nbsp; &nbsp;
-      Level:
-      <span class="level1P"></span>
-      &nbsp; &nbsp;
-      Game Over:
-      <span class="gameover1P"></span>
-    </p>
-
-    <p class="scs2P">
-      Score:
-      <span class="score2P"></span>
-      &nbsp; &nbsp;
-      Lines:
-      <span class="lines2P"></span>
-      &nbsp; &nbsp;
-      Level:
-      <span class="level2P"></span>
-      &nbsp; &nbsp;
-      Game Over:
-      <span class="gameover2P"></span>
-    </p>
   </div>
 </template>
 
@@ -467,14 +440,6 @@ module.exports = {
             player.lines;
           document.getElementsByClassName("gameover1P")[0].innerText =
             player.gameover;
-          document.getElementsByClassName("score1P")[1].innerText =
-            player.score;
-          document.getElementsByClassName("level1P")[1].innerText =
-            player.level;
-          document.getElementsByClassName("lines1P")[1].innerText =
-            player.lines;
-          document.getElementsByClassName("gameover1P")[1].innerText =
-            player.gameover;
         } else if (player === player2) {
           document.getElementsByClassName("score2P")[0].innerText =
             player.score;
@@ -483,14 +448,6 @@ module.exports = {
           document.getElementsByClassName("lines2P")[0].innerText =
             player.lines;
           document.getElementsByClassName("gameover2P")[0].innerText =
-            player.gameover;
-          document.getElementsByClassName("score2P")[1].innerText =
-            player.score;
-          document.getElementsByClassName("level2P")[1].innerText =
-            player.level;
-          document.getElementsByClassName("lines2P")[1].innerText =
-            player.lines;
-          document.getElementsByClassName("gameover2P")[1].innerText =
             player.gameover;
         }
       } catch (error) {}
@@ -522,28 +479,26 @@ module.exports = {
   display: inline-block;
   position: fixed;
   border: solid 7px hotpink;
-  height: 800px;
+  height: 720px;
   top: 100px;
   margin: auto;
 }
 
-#tetris1P,
-.scs1P {
+#tetris1P {
   right: 50%;
   left: auto;
 }
 
-#tetris2P,
-.scs2P {
+#tetris2P {
   left: 50%;
   right: auto;
 }
 
 .sc1P,
 .sc2P {
-  font-size: 38px;
+  font-size: 22px;
   font-weight: 600;
-  width: 280px;
+  width: 180px;
   padding-left: 12px;
   top: 100px;
   margin: auto;
@@ -551,21 +506,6 @@ module.exports = {
   border: solid 5px hotpink;
   background-color: rgb(255, 214, 237);
   color: hotpink;
-}
-
-.scs1P,
-.scs2P {
-  font-size: 18px;
-  width: 486px;
-  height: 36px;
-  padding-left: 12px;
-  top: 64px;
-  margin: auto;
-  position: fixed;
-  border: solid 5px hotpink;
-  background-color: rgb(255, 214, 237);
-  color: hotpink;
-  overflow: hidden;
 }
 
 .sc1P {
@@ -589,27 +529,11 @@ module.exports = {
 }
 
 #next1P {
-  left: 310px;
+  left: 190px;
 }
 
 #next2P {
-  right: 310px;
-}
-
-@media (max-width: 1700px) {
-  .sc1P,
-  .sc2P,
-  #next1P,
-  #next2P {
-    display: none;
-  }
-}
-
-@media (min-width: 1700px) {
-  .scs1P,
-  .scs2P {
-    display: none;
-  }
+  right: 190px;
 }
 </style>
 

@@ -52,6 +52,12 @@
   background-color: rgba(255, 105, 180, 0.4);
 }
 
+.modal-title {
+  font-size: 4em;
+  font-weight: 700;
+  margin: 0 auto;
+}
+
 .modal-body {
   background-color: rgba(255, 105, 180, 0.3);
 }

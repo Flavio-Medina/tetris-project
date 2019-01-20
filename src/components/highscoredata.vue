@@ -49,4 +49,8 @@ export default {
 #username {
   width: 160px;
 }
+
+.table {
+  font-size: 1.4em;
+}
 </style>

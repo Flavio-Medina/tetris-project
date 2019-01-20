@@ -32,11 +32,11 @@
         <br>Level: Hard
       </p>
       <div class="container">
-        <b-button class="col align-self-center btn btn-primary" id="resta">
-          <p class="btnFont">Play again</p>
+        <b-button class="col align-self-center btn btn-primary smbtn" id="resta">
+          <p class="smbtnFont">Play again</p>
         </b-button>
-        <b-button class="col align-self-center btn btn-primary" to="/">
-          <p class="btnFont">Back to Menu</p>
+        <b-button class="col align-self-center btn btn-primary smbtn" to="/">
+          <p class="smbtnFont">Back to Menu</p>
         </b-button>
       </div>
     </b-modal>

@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="hs" size="lg" hide-footer no-enforce-focus title="High Score">
+  <b-modal id="hs" size="lg" hide-footer no-enforce-focus hide-header-close title="High Score">
     <highscoredata/>
   </b-modal>
 </template>

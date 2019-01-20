@@ -1,6 +1,6 @@
 #tetris {
   border: solid 7px hotpink;
-  height: 800px;
+  height: 720px;
   top: 100px;
   left: 0;
   right: 0;
@@ -8,12 +8,11 @@
   position: absolute;
 }
 
-#next {
+#next, #hold {
   border: solid 7px hotpink;
   height: 160px;
-  top: 100px;
   left: 0;
-  right: 640px;
+  right: 570px;
   margin: auto;
   padding: 2vh;
   padding-bottom: 0;
@@ -21,17 +20,12 @@
   position: absolute;
 }
 
+#next {
+  top: 100px;
+}
+
 #hold {
-  border: solid 7px hotpink;
-  height: 160px;
   top: 300px;
-  left: 0;
-  right: 640px;
-  margin: auto;
-  padding: 2vh;
-  padding-bottom: 0;
-  background-color: rgb(255, 192, 227);
-  position: absolute;
 }
 
 .sc {
@@ -40,7 +34,7 @@
   width: 9.3em;
   padding-left: 0.3em;
   top: 100px;
-  left: 770px;
+  left: 800px;
   right: 0;
   margin: auto;
   position: absolute;
@@ -49,39 +43,31 @@
   color: hotpink;
 }
 
-.next {
+.next, .hold {
   font-size: 30px;
   font-weight: 600;
   width: 100px;
   padding-left: 0.3em;
-  top: 150px;
   left: 0px;
-  right: 900px;
+  right: 800px;
   margin: auto;
   position: absolute;
   border: solid 5px hotpink;
   background-color: rgb(255, 214, 237);
   color: hotpink;
+}
+
+.next {
+  top: 150px;
 }
 
 .hold {
-  font-size: 30px;
-  font-weight: 600;
-  width: 100px;
-  padding-left: 0.3em;
   top: 350px;
-  left: 0px;
-  right: 900px;
-  margin: auto;
-  position: absolute;
-  border: solid 5px hotpink;
-  background-color: rgb(255, 214, 237);
-  color: hotpink;
 }
 
 #gameovermodal {
-  font-size: 64px;
-  font-weight: 600;
+  font-size: 44px;
+  font-weight: 500;
   padding-left: 0.4em;
 }
 

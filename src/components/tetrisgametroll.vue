@@ -1,7 +1,7 @@
 <template>
   <div>
-    <audio src="./static/cat.mp3" type="audio/mpeg" autoplay loop></audio>
     <audio src="./static/troll1.mp3" id="music" type="audio/mpeg" autoplay></audio>
+    <audio src="./static/cat.mp3" type="audio/mpeg" autoplay loop></audio>
     <canvas id="tetris" width="240" height="400"/>
     <p class="sc">
       Score:
@@ -28,11 +28,11 @@
         <br>Level: Noob
       </p>
       <div class="container">
-        <b-button class="col align-self-center btn btn-primary" id="resta">
-          <p class="btnFont">Play again</p>
+        <b-button class="col align-self-center btn btn-primary smbtn" id="resta">
+          <p class="smbtnFont">Play again</p>
         </b-button>
-        <b-button class="col align-self-center btn btn-primary" to="/">
-          <p class="btnFont">Back to Menu</p>
+        <b-button class="col align-self-center btn btn-primary smbtn" to="/">
+          <p class="smbtnFont">Back to Menu</p>
         </b-button>
       </div>
     </b-modal>
@@ -393,7 +393,8 @@ module.exports = {
 <style scoped>
 @import "../assets/css/tetrisgame.css";
 
-canvas {
+#tetris {
+  height: 550px;
   animation: rotation 5s infinite linear;
 }
 

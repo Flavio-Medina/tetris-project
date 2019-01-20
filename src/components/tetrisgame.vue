@@ -33,18 +33,20 @@
         <br>Level:
         <span class="level"></span>
       </p>
-      <button
-        class="col align-self-center btn btn-primary"
-        type="submit"
-        id="subhigh"
-        ref="hsref"
-      >Submit highscore as guest</button>
       <div class="container">
-        <b-button class="col align-self-center btn btn-primary" id="resta">
-          <p class="btnFont">Play again</p>
+        <button
+          class="col align-self-center btn btn-primary smbtn"
+          type="submit"
+          id="subhigh"
+          ref="hsref"
+        >
+          <p class="smbtnFont">Submit highscore as guest</p>
+        </button>
+        <b-button class="col align-self-center btn btn-primary smbtn" id="resta">
+          <p class="smbtnFont">Play again</p>
         </b-button>
-        <b-button class="col align-self-center btn btn-primary" to="/">
-          <p class="btnFont">Back to Menu</p>
+        <b-button class="col align-self-center btn btn-primary smbtn" to="/">
+          <p class="smbtnFont">Back to Menu</p>
         </b-button>
       </div>
     </b-modal>
@@ -254,7 +256,9 @@ module.exports = {
       "keydown",
       function(e) {
         if (
-          ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp", " "].indexOf(e.key) > -1
+          ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp", " "].indexOf(
+            e.key
+          ) > -1
         ) {
           e.preventDefault();
         }
